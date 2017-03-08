@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from main.models import db
 from datetime import datetime
+
+from . import db
+
 
 class Wo(db.Model):
 	
@@ -16,6 +18,7 @@ class Wo(db.Model):
 	stu_name: 姓名
 	stu_id: 学号
 	tel_number: 手机号码
+	brand: 电脑品牌
 	ishandle: 是否处理（0未处理，1已处理）
 	problem_num: 问题编号()
 	remark: 备注
@@ -26,17 +29,19 @@ class Wo(db.Model):
 	stu_id = db.Column(db.String(20), nullable = False)
 	tel_number = db.Column(db.String(20), nullable = False)
 	ishandle = db.Column(db.SmallInteger, default = 0, nullable = False)
-	problem_num = db.Column(db.SmallInteger, default = 0, nullable = False)
+	brand = db.Column(db.String(20),nullable = False)
+	problem = db.Column(db.String(20), default = 0, nullable = False)
 	remark = db.Column(db.String(300),nullable = True)
 	regtime = db.Column(db.DateTime, default = datetime.now, nullable = False)
 	
-	def __init__(self, stu_name, stu_id, tel_number, ishandle, problem_num, remark):
+	def __init__(self, stu_name, stu_id, tel_number, ishandle, problem_num, brand, remark):
 		self.stu_name = stu_name
 		self.stu_id = stu_id
 		self.tel_number = tel_number
 		self.ishandle = ishandle
 		self.remark = remark
 		self.problem_num = problem_num
+		self.brand = brand
 	
 	def __repr__(self):
 		return '<stu_id %r>' % self.stu_id

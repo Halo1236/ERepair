@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from main.models import db
-
+from . import db
 
 class Administrator(db.Model):
 	

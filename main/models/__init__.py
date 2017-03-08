@@ -1,17 +1,17 @@
  #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from flask_sqlalchemy import SQLAlchemy
-from main import app
-import time
-import pymysql
-pymysql.install_as_MySQLdb()
+ import pymysql
+ from flask_sqlalchemy import SQLAlchemy
+
+ from main import app
+
+ pymysql.install_as_MySQLdb()
 
 from .administrator import Administrator
 from  .wo import Wo
 
 db = SQLAlchemy(app)
-
 
 def set_wo_info(wo_info):
 	wo = Wo(stu_name = wo_info['stu_name'],

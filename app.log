@@ -1,3 +1,47 @@
 2017-02-23 21:15:16,660 ERROR: Unhandled Exception: 'form' is undefined [in F:\python\ERepair\main\routes.py:22]
 2017-02-23 21:19:34,844 ERROR: Unhandled Exception: 'form' is undefined [in F:\python\ERepair\main\routes.py:23]
 2017-02-23 21:21:37,772 ERROR: Unhandled Exception: 'form' is undefined [in F:\python\ERepair\main\routes.py:23]
+2017-03-03 17:12:33,854 ERROR: Exception on / [POST] [in F:\python\vrpy\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1725, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+2017-03-03 17:12:34,666 ERROR: Exception on / [POST] [in F:\python\vrpy\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1725, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+2017-03-03 17:12:34,901 ERROR: Exception on / [POST] [in F:\python\vrpy\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1725, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+2017-03-03 17:12:35,135 ERROR: Exception on / [POST] [in F:\python\vrpy\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1725, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response

@@ -1,12 +1,40 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from flask import render_template
+from flask import render_template,request,abort,jsonify
+
 from main import app
 
-@app.route('/')
+
+@app.route('/',methods = ['GET','POST'])
 def index():
-	return render_template('index.html')
+	if request.method == 'POST':
+		stu_name = request.form.get('stu_name','')
+		stu_id = request.form.get('stu_id','')
+		tel_number = request.form.get('tel_number','')
+		brand = request.form.get('brand','')
+		problem = request.form.get('problem','')
+		remark = request.form.get('remark','')
+		#set_wo(stu_id,stu_name,tel_number,brand,problem,remark)
+		return jsonify({'errmsg': 'ok' })
+	elif request.method == 'GET':
+		return render_template('index.html',page_title = u'E修哥工单系统',
+		                                    page_info = u'详细填写信息')
+	else:
+		abort(404)
+	
+@app.route('/login',methods = ['GET'])
+def log_in():
+	return render_template('auth.html',page_title = u'E修哥工单系统',
+		                               page_info = u'请填写学号和姓名')
+
+# @app.route('/<stu_id>/result',methods = ['GET'])
+# def wo_result(stu_id=None):
+# 	if is_wo_exists(stu_id):
+# 		return jsonify({'errmsg': 'ok'})
+# 	else:
+# 		return jsonify({'errmsg': '提交工单失败'})
+
 
 @app.route('/login')
 def login():
