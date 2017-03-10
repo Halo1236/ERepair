@@ -46,7 +46,7 @@ $(function() {
             // 提交绑定信息
             $.post(window.location.href, data, function(res) {
                 if (res.errmsg == 'ok') {
-                    get_wo_result(stu_id);
+                    $.post()
                 }
             });
         } else {

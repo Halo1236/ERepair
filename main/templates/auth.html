@@ -24,7 +24,7 @@
                         <label class="weui-label">学号</label>
                     </div>
                     <div class="weui-cells__hd weui-cell_primary">
-                        <input class="weui-input" id="userid" type="number" placeholder="请输入学号" />
+                        <input class="weui-input" id="userid" type="number" required pattern="[0-9]{11}" placeholder="请输入学号" />
                     </div>
                 </div>
                 <div class="weui-cell">
@@ -44,6 +44,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ url_for('static',filename='js/auth.js') }}"></script>
     <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/jquery-weui/1.0.0/js/jquery-weui.min.js"></script>
 </body>

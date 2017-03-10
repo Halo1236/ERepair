@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from flask import render_template,request,abort,jsonify
+from flask import render_template,request,abort,jsonify,session,redirect,url_for
 
-from main import app
+from main.models import *
 
 
 @app.route('/',methods = ['GET','POST'])
@@ -23,11 +23,25 @@ def index():
 	else:
 		abort(404)
 	
-@app.route('/login',methods = ['GET'])
+@app.route('/login',methods = ['GET','POST'])
 def log_in():
-	return render_template('auth.html',page_title = u'E修哥工单系统',
+	if request.method == 'POST':
+		stu_id = request.form.get('userid','')
+		stu_name = request.form.get('username','')
+		session['userid'] = stu_id
+		session['username'] = stu_name
+		if stu_id and stu_name:
+			set_user_info(stu_id,stu_name)
+			errmsg = 'ok'
+		else:
+			errmsg = u'学号或者姓名格式不合法'
+		return jsonify({'errmsg':errmsg})
+	elif request.method == 'GET':
+		return render_template('auth.html',page_title = u'E修哥工单系统',
 		                               page_info = u'请填写学号和姓名')
-
+	else:
+		abort(404)
+		
 # @app.route('/<stu_id>/result',methods = ['GET'])
 # def wo_result(stu_id=None):
 # 	if is_wo_exists(stu_id):
@@ -36,9 +50,19 @@ def log_in():
 # 		return jsonify({'errmsg': '提交工单失败'})
 
 
-@app.route('/login')
-def login():
-	return render_template('login.html')
+@app.route('/login/result',methods = 'POST')
+def check_login():
+	stu_id = session.get('userid')
+	stu_name = session.get('username')
+	if stu_id and stu_name:
+		if is_user_exists(stu_id):
+			return render_template('index.html',page_title = u'填写维修工单',
+			                                    page_info = u'请保证信息的正确性，不要留空')
+		else:
+			abort(404)
+	else:
+		return redirect(url_for('login'))
+		
 
 @app.errorhandler(404)
 def page_not_found(error):

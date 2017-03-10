@@ -5,6 +5,9 @@ from datetime import datetime
 
 from . import db
 
+"""
+工单数据模型
+"""
 
 class Wo(db.Model):
 	
@@ -15,7 +18,6 @@ class Wo(db.Model):
 	
 	'''
 	id: 记录编号
-	stu_name: 姓名
 	stu_id: 学号
 	tel_number: 手机号码
 	brand: 电脑品牌
@@ -24,18 +26,16 @@ class Wo(db.Model):
 	remark: 备注
 	regtime: 提交时间
 	'''
-	id = db.Column(db.Integer, primary_key = True,autoincrement = True)
-	stu_name = db.Column(db.String(20), nullable = False)
+	id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	stu_id = db.Column(db.String(20), nullable = False)
 	tel_number = db.Column(db.String(20), nullable = False)
-	ishandle = db.Column(db.SmallInteger, default = 0, nullable = False)
-	brand = db.Column(db.String(20),nullable = False)
+	ishandle = db.Column(db.Integer, default = 0, nullable = False)
+	brand = db.Column(db.String(20), nullable = False)
 	problem = db.Column(db.String(20), default = 0, nullable = False)
-	remark = db.Column(db.String(300),nullable = True)
+	remark = db.Column(db.String(300), nullable = True)
 	regtime = db.Column(db.DateTime, default = datetime.now, nullable = False)
 	
-	def __init__(self, stu_name, stu_id, tel_number, ishandle, problem_num, brand, remark):
-		self.stu_name = stu_name
+	def __init__(self, stu_id, tel_number, ishandle, problem_num, brand, remark):
 		self.stu_id = stu_id
 		self.tel_number = tel_number
 		self.ishandle = ishandle

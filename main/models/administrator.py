@@ -3,6 +3,9 @@
 
 from . import db
 
+"""
+管理员数据模型
+"""
 class Administrator(db.Model):
 	
 	__table_args__ = {
