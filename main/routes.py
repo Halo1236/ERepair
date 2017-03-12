@@ -6,15 +6,17 @@ from flask import render_template,request,abort,jsonify,session,redirect,url_for
 from main.models import *
 
 
+#from main import app
+
+
 @app.route('/',methods = ['GET','POST'])
 def index():
 	if request.method == 'POST':
-		stu_name = request.form.get('stu_name','')
-		stu_id = request.form.get('stu_id','')
 		tel_number = request.form.get('tel_number','')
 		brand = request.form.get('brand','')
 		problem = request.form.get('problem','')
 		remark = request.form.get('remark','')
+		print(tel_number,brand)
 		#set_wo(stu_id,stu_name,tel_number,brand,problem,remark)
 		return jsonify({'errmsg': 'ok' })
 	elif request.method == 'GET':
@@ -22,7 +24,7 @@ def index():
 		                                    page_info = u'详细填写信息')
 	else:
 		abort(404)
-	
+
 @app.route('/login',methods = ['GET','POST'])
 def log_in():
 	if request.method == 'POST':
@@ -41,13 +43,13 @@ def log_in():
 		                               page_info = u'请填写学号和姓名')
 	else:
 		abort(404)
-		
-# @app.route('/<stu_id>/result',methods = ['GET'])
-# def wo_result(stu_id=None):
-# 	if is_wo_exists(stu_id):
-# 		return jsonify({'errmsg': 'ok'})
-# 	else:
-# 		return jsonify({'errmsg': '提交工单失败'})
+
+@app.route('/<stu_id>/result',methods = ['GET'])
+def wo_result(stu_id=None):
+	if is_wo_exists(stu_id):
+		return jsonify({'errmsg': 'ok'})
+	else:
+		return jsonify({'errmsg': '提交工单失败'})
 
 
 @app.route('/login/result',methods = 'POST')

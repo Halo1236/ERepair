@@ -5,6 +5,6 @@ DEBUG = False
 
 MAIN_URL = u'http://m.ayhalo.com'
 
-SQLALCHEMY_DATABASE_URI = "mysql://root:root@localhost/weixin?charset=utf8mb4"
+SQLALCHEMY_DATABASE_URI = "mysql://wo_admin:qscwdv1000@@localhost/eRepairWo?charset=utf8mb4"
 
 SECRET_KEY = u'dasfdasfaddqweqw!@#'

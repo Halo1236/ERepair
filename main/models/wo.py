@@ -32,15 +32,15 @@ class Wo(db.Model):
 	ishandle = db.Column(db.Integer, default = 0, nullable = False)
 	brand = db.Column(db.String(20), nullable = False)
 	problem = db.Column(db.String(20), default = 0, nullable = False)
-	remark = db.Column(db.String(300), nullable = True)
+	remark = db.Column(db.String(200), nullable = True)
 	regtime = db.Column(db.DateTime, default = datetime.now, nullable = False)
 	
-	def __init__(self, stu_id, tel_number, ishandle, problem_num, brand, remark):
+	def __init__(self, stu_id, tel_number, ishandle, problem, brand, remark):
 		self.stu_id = stu_id
 		self.tel_number = tel_number
 		self.ishandle = ishandle
 		self.remark = remark
-		self.problem_num = problem_num
+		self.problem = problem
 		self.brand = brand
 	
 	def __repr__(self):

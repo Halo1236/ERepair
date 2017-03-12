@@ -60,4 +60,5 @@ $(function () {
             }
         ]
       });
+    $("#time").select({});
 });

@@ -24,20 +24,17 @@ $(function() {
     }
 
     $('#submit').click(function() {
-        var stu_id = $('#stu_id').val().replace(/\s+/g, '');
-        var stu_name = $('#stu_name').val().replace(/\s+/g, '');
         var tel_number = $('#tel_number').val().replace(/\s+/g,'');
-        var brand = $('#brand').val().replace(/\s+/g,'');
+        var brand = $('#brand').attr("value", t).attr("data-values",'');
+        //var brand = $('#brand').val().replace(/\s+/g,'');
         var problem = $('#problem').val().replace(/\s+/g,'');
         var remark = $('#remark').val().replace(/\s+/g,'');
 
         // 验证各项信息不为空
-        if (!!stu_id && !!stu_name && !!tel_number && !!brand && !!problem) {
+        if (!!tel_number && !!brand && !!problem) {
             // 判断绑定类型
             $.showLoading();
             var data = {
-                stu_id: stu_id,
-                stu_name: stu_name,
                 tel_number : tel_number,
                 brand : brand,
                 problem : problem,
@@ -46,20 +43,10 @@ $(function() {
             // 提交绑定信息
             $.post(window.location.href, data, function(res) {
                 if (res.errmsg == 'ok') {
-                    $.post()
+
                 }
             });
         } else {
-            // 提示输入格式不正确
-            $('.js_tooltips').show();
-            setTimeout(function() {
-                $('.js_tooltips').hide();
-            }, 3000);
         }
-    });
-
-    // 关闭错误弹框
-    $('.weui_btn_dialog.primary').click(function() {
-        $('.weui_dialog_alert').hide();
     });
 });
