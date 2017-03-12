@@ -8,9 +8,9 @@ from main import app
 
 pymysql.install_as_MySQLdb()
 
-from .administrator import Administrator
-from  .wo import Wo
-from  .user import User
+from main.models.administrator import Administrator
+from  main.models.wo import Wo
+from  main.models.user import User
 
 db = SQLAlchemy(app)
 

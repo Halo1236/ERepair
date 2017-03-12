@@ -3,7 +3,7 @@
 
 from datetime import datetime
 
-from . import db
+from main.models import db
 
 """
 工单数据模型

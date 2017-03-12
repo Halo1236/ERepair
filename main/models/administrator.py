@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from . import db
+from main.models import db
 
 """
 管理员数据模型

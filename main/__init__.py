@@ -22,4 +22,4 @@ handler.setFormatter(logging.Formatter(
 handler.setLevel(logging.WARNING)
 app.logger.addHandler(handler)
 
-from . import routes
+from main import routes
