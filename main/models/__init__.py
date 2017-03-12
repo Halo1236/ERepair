@@ -7,12 +7,13 @@ from flask_sqlalchemy import SQLAlchemy
 from main import app
 
 pymysql.install_as_MySQLdb()
+db = SQLAlchemy(app)
 
 from main.models.administrator import Administrator
 from  main.models.wo import Wo
 from  main.models.user import User
 
-db = SQLAlchemy(app)
+
 
 def set_wo_info(wo_info):
     wo_mod = Wo(stu_name = wo_info['stu_name'],

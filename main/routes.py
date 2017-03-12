@@ -6,9 +6,6 @@ from flask import render_template,request,abort,jsonify,session,redirect,url_for
 from main.models import *
 
 
-#from main import app
-
-
 @app.route('/',methods = ['GET','POST'])
 def index():
 	if request.method == 'POST':
@@ -52,7 +49,7 @@ def wo_result(stu_id=None):
 		return jsonify({'errmsg': '提交工单失败'})
 
 
-@app.route('/login/result',methods = 'POST')
+@app.route('/login/result',methods = ['POST'])
 def check_login():
 	stu_id = session.get('userid')
 	stu_name = session.get('username')
