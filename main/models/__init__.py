@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from main import app
 
 pymysql.install_as_MySQLdb()
+
 db = SQLAlchemy(app)
 
 from main.models.administrator import Administrator

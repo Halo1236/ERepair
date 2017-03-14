@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <meta content="telephone=no" name="format-detection" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>青创空间</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/title.css')}}"/>
@@ -37,16 +37,16 @@
                 </div>
             </div>
             <div class="weui-btn-area">
-                <a class="weui-btn weui-btn_primary" id="login">登录</a>
+                <a class="weui-btn weui-btn_primary" id="log_in">登录</a>
             </div>
             <div class="weui-footer weui-footer_fixed-bottom">
                 <p class="weui-footer__text">Copyright ©宿迁学院-青创空间 2017</p>
             </div>
         </div>
     </div>
-    <script src="{{ url_for('static',filename='js/auth.js') }}"></script>
     <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/jquery-weui/1.0.0/js/jquery-weui.min.js"></script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 </body>
 
 </html>

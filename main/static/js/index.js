@@ -25,8 +25,7 @@ $(function() {
 
     $('#submit').click(function() {
         var tel_number = $('#tel_number').val().replace(/\s+/g,'');
-        var brand = $('#brand').attr("value", t).attr("data-values",'');
-        //var brand = $('#brand').val().replace(/\s+/g,'');
+        var brand = $('#brand').val().replace(/\s+/g,'');
         var problem = $('#problem').val().replace(/\s+/g,'');
         var remark = $('#remark').val().replace(/\s+/g,'');
 

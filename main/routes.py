@@ -3,24 +3,24 @@
 
 from flask import render_template, request, abort, jsonify, session, redirect, url_for
 
-from main.models import *
+from main.models import app
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        tel_number = request.form.get('tel_number', '')
-        brand = request.form.get('brand', '')
-        problem = request.form.get('problem', '')
-        remark = request.form.get('remark', '')
-        print(tel_number, brand)
-        # set_wo(stu_id,stu_name,tel_number,brand,problem,remark)
-        return jsonify({'errmsg': 'ok'})
-    elif request.method == 'GET':
-        return render_template('index.html', page_title=u'E修哥工单系统',
-                               page_info=u'详细填写信息')
-    else:
-        abort(404)
+# @app.route('/', methods=['GET', 'POST'])
+# def index():
+#     if request.method == 'POST':
+#         tel_number = request.form.get('tel_number', '')
+#         brand = request.form.get('brand', '')
+#         problem = request.form.get('problem', '')
+#         remark = request.form.get('remark', '')
+#         print(tel_number, brand)
+#         # set_wo(stu_id,stu_name,tel_number,brand,problem,remark)
+#         return jsonify({'errmsg': 'ok'})
+#     elif request.method == 'GET':
+#         return render_template('index.html', page_title=u'E修哥工单系统',
+#                                page_info=u'详细填写信息')
+#     else:
+#         abort(404)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -31,7 +31,7 @@ def log_in():
         session['userid'] = stu_id
         session['username'] = stu_name
         if stu_id and stu_name:
-            set_user_info(stu_id, stu_name)
+            #set_user_info(stu_id, stu_name)
             errmsg = 'ok'
         else:
             errmsg = u'学号或者姓名格式不合法'
@@ -42,27 +42,30 @@ def log_in():
     else:
         abort(404)
 
+#
+# @app.route('/<stu_id>/result', methods=['GET'])
+# def wo_result(stu_id=None):
+#     if is_wo_exists(stu_id):
+#         return jsonify({'errmsg': 'ok'})
+#     else:
+#         return jsonify({'errmsg': '提交工单失败'})
+#
+#
 
-@app.route('/<stu_id>/result', methods=['GET'])
-def wo_result(stu_id=None):
-    if is_wo_exists(stu_id):
-        return jsonify({'errmsg': 'ok'})
-    else:
-        return jsonify({'errmsg': '提交工单失败'})
 
-
-@app.route('/login/result', methods=['POST'])
+@app.route('/login/result', methods=['GET', 'POST'])
 def check_login():
     stu_id = session.get('userid')
     stu_name = session.get('username')
+    print(stu_id, stu_name)
     if stu_id and stu_name:
-        if is_user_exists(stu_id):
+        if stu_id and stu_name:
             return render_template('index.html', page_title=u'填写维修工单',
                                    page_info=u'请保证信息的正确性，不要留空')
         else:
             abort(404)
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('log_in'))
 
 
 @app.errorhandler(404)

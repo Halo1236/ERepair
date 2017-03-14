@@ -45,3 +45,5 @@ Traceback (most recent call last):
   File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1725, in make_response
     raise ValueError('View function did not return a response')
 ValueError: View function did not return a response
+2017-03-14 17:54:00,695 ERROR: Unhandled Exception: Could not build url for endpoint 'login'. Did you mean 'log_in' instead? [in F:\python\ERepair\main\routes.py:80]
+2017-03-14 17:54:06,894 ERROR: Unhandled Exception: Could not build url for endpoint 'login'. Did you mean 'log_in' instead? [in F:\python\ERepair\main\routes.py:80]
