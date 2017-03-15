@@ -15,9 +15,7 @@ app.secret_key = app.config['SECRET_KEY']
 # 记录日志
 handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=1)
 handler.setFormatter(logging.Formatter(
-    '%(asctime)s %(levelname)s: %(message)s '
-    '[in %(pathname)s:%(lineno)d]'
-))
+    '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
 
 handler.setLevel(logging.WARNING)
 app.logger.addHandler(handler)

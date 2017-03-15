@@ -38,7 +38,7 @@ $(function () {
                 value: "008"
             }
         ]
-      });
+    });
     $("#problem").select({
         title: "选择问题",
         items: [
@@ -59,6 +59,18 @@ $(function () {
                 value: "004"
             }
         ]
-      });
-    $("#time").select({});
+    });
+    $("#time").select({
+        title:"选择服务的时间段",
+        items: [
+            {
+                title: "星期三 14:00-17:00",
+                value: "001"
+            },
+            {
+                title: "星期六 14:00-17:00",
+                value: "002"
+            }
+        ]
+    });
 });

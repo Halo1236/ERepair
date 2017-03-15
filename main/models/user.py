@@ -14,10 +14,9 @@ class User(db.Model):
         'mysql_charset': 'utf8mb4'
     }
 
-    id = db.Column(db.Integer, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     stu_id = db.Column(
         db.String(20),
-        primary_key=True,
         unique=True,
         nullable=False)
     stu_name = db.Column(db.String(20), unique=True, nullable=False)
@@ -27,7 +26,7 @@ class User(db.Model):
         self.stu_name = stu_name
 
     def __repr__(self):
-        return '<stu_id %r>' % self.stu_id
+        return '<id %r>' % self.id
 
     def save(self):
         db.session.add(self)

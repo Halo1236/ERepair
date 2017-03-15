@@ -23,26 +23,32 @@ class Wo(db.Model):
 	tel_number: 手机号码
 	brand: 电脑品牌
 	ishandle: 是否处理（0未处理，1已处理）
-	problem_num: 问题编号()
+	problem: 问题
+	scheduled: 预约时间
+	admin_id: 维修人员编号
+	evaluation: 维修评价(0-5分)
 	remark: 备注
 	regtime: 提交时间
 	'''
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    stu_id = db.Column(db.String(20), nullable=False)
+    stu_id = db.Column(db.String(20), foreign_key=True, nullable=False)
     tel_number = db.Column(db.String(20), nullable=False)
-    ishandle = db.Column(db.Integer, default=0, nullable=False)
     brand = db.Column(db.String(20), nullable=False)
-    problem = db.Column(db.String(20), default=0, nullable=False)
+    ishandle = db.Column(db.Integer, default=0, nullable=False)
+    problem = db.Column(db.String(20), nullable=False)
+    scheduled = db.Column(db.String(20), nullable=False)
+    admin_id = db.Column(db.String(20), foreign_key=True, nullable=True)
+    evaluation = db.Column(db.Integer, default=0, nullable=False)
     remark = db.Column(db.String(200), nullable=True)
     regtime = db.Column(db.DateTime, default=datetime.now, nullable=False)
 
-    def __init__(self, stu_id, tel_number, ishandle, problem, brand, remark):
+    def __init__(self, stu_id, tel_number, problem, brand, scheduled, remark):
         self.stu_id = stu_id
         self.tel_number = tel_number
-        self.ishandle = ishandle
         self.remark = remark
         self.problem = problem
         self.brand = brand
+        self.scheduled = scheduled
 
     def __repr__(self):
         return '<stu_id %r>' % self.stu_id

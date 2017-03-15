@@ -15,10 +15,9 @@ class Administrator(db.Model):
         'mysql_charset': 'utf8mb4'
     }
 
-    id = db.Column(db.Integer, autoincrement=True)
+    admin_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     admin_name = db.Column(
         db.String(20),
-        primary_key=True,
         unique=True,
         nullable=False)
     admin_passwd = db.Column(db.String(20), unique=True, nullable=False)

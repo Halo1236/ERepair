@@ -16,8 +16,7 @@ from main.models.user import User
 
 
 def set_wo_info(wo_info):
-    wo_mod = Wo(stu_name=wo_info['stu_name'],
-                stu_id=wo_info['stu_id'],
+    wo_mod = Wo(stu_id=wo_info['stu_id'],
                 tel_number=wo_info['tel_number'],
                 ishandle=wo_info['ishandle'],
                 remark=wo_info['remark'],
@@ -26,8 +25,9 @@ def set_wo_info(wo_info):
 
 
 def set_user_info(stu_id, stu_name):
-    user_mod = User(stu_id=stu_id, stu_name=stu_name)
-    user_mod.save()
+    if not is_user_exists(stu_id):
+        user_mod = User(stu_id=stu_id, stu_name=stu_name)
+        user_mod.save()
 
 
 def is_wo_exists(stu_id):

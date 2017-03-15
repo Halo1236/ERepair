@@ -3,7 +3,7 @@
 
 from flask import render_template, request, abort, jsonify, session, redirect, url_for
 
-from main.models import app
+from main.models import *
 
 
 # @app.route('/', methods=['GET', 'POST'])
@@ -31,7 +31,7 @@ def log_in():
         session['userid'] = stu_id
         session['username'] = stu_name
         if stu_id and stu_name:
-            #set_user_info(stu_id, stu_name)
+            set_user_info(stu_id, stu_name)
             errmsg = 'ok'
         else:
             errmsg = u'学号或者姓名格式不合法'
@@ -58,8 +58,10 @@ def check_login():
     stu_id = session.get('userid')
     stu_name = session.get('username')
     print(stu_id, stu_name)
+    session.pop('userid', None)
+    session.pop('username', None)
     if stu_id and stu_name:
-        if stu_id and stu_name:
+        if is_user_exists(stu_id):
             return render_template('index.html', page_title=u'填写维修工单',
                                    page_info=u'请保证信息的正确性，不要留空')
         else:
