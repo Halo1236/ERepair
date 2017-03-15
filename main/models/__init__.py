@@ -25,9 +25,11 @@ def set_wo_info(wo_info):
 
 
 def set_user_info(stu_id, stu_name):
-    if not is_user_exists(stu_id):
+    if not is_user_exists(stu_id, stu_name):
         user_mod = User(stu_id=stu_id, stu_name=stu_name)
         user_mod.save()
+        return True
+    return False
 
 
 def is_wo_exists(stu_id):
@@ -50,9 +52,10 @@ def is_admin_exists(admin_form):
             return False
 
 
-def is_user_exists(stu_id):
-    user_info = User.query.filter_by(stu_id=stu_id).first()
-    if not user_info:
+def is_user_exists(stu_id, stu_name):
+    if not (User.query.filter_by(
+            stu_id=stu_id).first() or User.query.filter_by(
+            stu_name=stu_name).first()):
         return False
     else:
         return True

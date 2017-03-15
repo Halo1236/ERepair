@@ -31,13 +31,13 @@ class Wo(db.Model):
 	regtime: 提交时间
 	'''
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    stu_id = db.Column(db.String(20), foreign_key=True, nullable=False)
+    stu_id = db.Column(db.String(20), nullable=False)
     tel_number = db.Column(db.String(20), nullable=False)
     brand = db.Column(db.String(20), nullable=False)
     ishandle = db.Column(db.Integer, default=0, nullable=False)
     problem = db.Column(db.String(20), nullable=False)
     scheduled = db.Column(db.String(20), nullable=False)
-    admin_id = db.Column(db.String(20), foreign_key=True, nullable=True)
+    admin_id = db.Column(db.String(20), nullable=True)
     evaluation = db.Column(db.Integer, default=0, nullable=False)
     remark = db.Column(db.String(200), nullable=True)
     regtime = db.Column(db.DateTime, default=datetime.now, nullable=False)

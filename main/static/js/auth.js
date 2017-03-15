@@ -27,6 +27,8 @@ $(function () {
             $.post(window.location.href, data, function(res) {
                 if (res.errmsg == 'ok') {
                     get_user_result();
+                }else {
+                    $.toptip('学号或姓名格式错误','error');
                 }
             });
         } else {

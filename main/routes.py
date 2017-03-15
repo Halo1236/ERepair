@@ -30,8 +30,7 @@ def log_in():
         stu_name = request.form.get('username', '')
         session['userid'] = stu_id
         session['username'] = stu_name
-        if stu_id and stu_name:
-            set_user_info(stu_id, stu_name)
+        if set_user_info(stu_id, stu_name):
             errmsg = 'ok'
         else:
             errmsg = u'学号或者姓名格式不合法'
@@ -61,7 +60,7 @@ def check_login():
     session.pop('userid', None)
     session.pop('username', None)
     if stu_id and stu_name:
-        if is_user_exists(stu_id):
+        if is_user_exists(stu_id, stu_name):
             return render_template('index.html', page_title=u'填写维修工单',
                                    page_info=u'请保证信息的正确性，不要留空')
         else:
