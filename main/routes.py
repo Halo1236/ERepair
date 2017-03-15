@@ -57,9 +57,9 @@ def check_login():
     stu_id = session.get('userid')
     stu_name = session.get('username')
     print(stu_id, stu_name)
-    session.pop('userid', None)
-    session.pop('username', None)
     if stu_id and stu_name:
+        session.pop('userid',None)
+        session.pop('username',None)
         if is_user_exists(stu_id, stu_name):
             return render_template('index.html', page_title=u'填写维修工单',
                                    page_info=u'请保证信息的正确性，不要留空')

@@ -47,3 +47,4 @@ Traceback (most recent call last):
 ValueError: View function did not return a response
 2017-03-14 17:54:00,695 ERROR: Unhandled Exception: Could not build url for endpoint 'login'. Did you mean 'log_in' instead? [in F:\python\ERepair\main\routes.py:80]
 2017-03-14 17:54:06,894 ERROR: Unhandled Exception: Could not build url for endpoint 'login'. Did you mean 'log_in' instead? [in F:\python\ERepair\main\routes.py:80]
+2017-03-15 19:20:32,412 ERROR: Unhandled Exception: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] 由于目标计算机积极拒绝，无法连接。)") [in F:\python\ERepair\main\routes.py:80]

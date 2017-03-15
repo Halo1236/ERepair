@@ -29,6 +29,7 @@ $(function () {
                     get_user_result();
                 }else {
                     $.toptip('学号或姓名格式错误','error');
+                    $.hideLoading();
                 }
             });
         } else {
