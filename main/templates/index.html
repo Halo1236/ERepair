@@ -17,7 +17,9 @@
         <div class="page">
             <div class="hd">
                 <h1 class="page_title">{{ page_title }}</h1>
-                <p class="page_desc">{{ page_info }}</p>
+                <p class="page_desc">
+                    <a class="wo_btn" id="wo_history">点击我查看历史工单</a>
+                </p>
             </div>
             <div class="weui-cells__title">填写信息</div>
             <div class="weui-cells weui-cells_form">
@@ -63,14 +65,14 @@
                         </div>
                     </div>
             </div>
-            <label for="weuiAgree" class="weui-agree">
-                <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox">
+            <div class="weui-agree">
+                <input id="warnning" type="checkbox" class="weui-agree__checkbox">
                 <span class="weui-agree__text">
-                    阅读并同意<a href="javascript:void(0);">《相关条款》</a>
+                    阅读并同意<a href="javascript:void(0);" >《相关条款》</a>
                 </span>
-            </label>
+            </div>
             <div class="weui-btn-area">
-                <a  class="weui-btn weui-btn_primary" id="submit">确定</a>
+                <a  class="weui-btn weui-btn_disabled weui-btn_primary" id="submit">确定</a>
             </div>
             <br><br>
             <div class="weui-footer">

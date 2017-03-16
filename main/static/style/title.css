@@ -44,7 +44,10 @@ body {
     color: #888;
     font-size: 14px
 }
-
+.wo_btn{
+    color: #0a4c88;
+    font-size: 14px
+}
 .page_title {
     text-align: center;
     font-size: 34px;

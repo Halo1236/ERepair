@@ -9,6 +9,7 @@ from main.models import db
 工单数据模型
 """
 
+
 class Wo(db.Model):
 
     __table_args__ = {
@@ -37,6 +38,7 @@ class Wo(db.Model):
     problem = db.Column(db.String(20), nullable=False)
     scheduled = db.Column(db.String(20), nullable=False)
     admin_id = db.Column(db.String(20), nullable=True)
+    sn = db.Column(db.String(20), nullable=True)
     evaluation = db.Column(db.Integer, default=0, nullable=False)
     remark = db.Column(db.String(200), nullable=True)
     regtime = db.Column(db.DateTime, default=datetime.now, nullable=False)

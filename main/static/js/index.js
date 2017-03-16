@@ -48,4 +48,15 @@ $(function() {
         } else {
         }
     });
+
+    $('#wo_history').click(function () {
+
+    });
+
+    $('#warnning').click(function () {
+        $.alert("自定义的消息内容", "自定义条款", function() {
+            $('#submit').removeClass('weui-btn_disabled');
+        });
+    });
+
 });
