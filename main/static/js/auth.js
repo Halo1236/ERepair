@@ -6,9 +6,9 @@ $(function () {
         var intervalId = setInterval(function() {
             clearInterval(intervalId);
             $.hideLoading();
-            $.get(window.location.href +'/result');
+            $.post(window.location.href +'/index');
         }, 2000);
-        window.location.href =window.location.href+'/result';
+        window.location.href =window.location.href+'/index';
     }
 
     $('#log_in').click(function() {
@@ -28,7 +28,7 @@ $(function () {
                 if (res.errmsg == 'ok') {
                     get_user_result();
                 }else {
-                    $.toptip('学号或姓名格式错误','error');
+                    $.toptip(res.errmsg,'error');
                     $.hideLoading();
                 }
             });

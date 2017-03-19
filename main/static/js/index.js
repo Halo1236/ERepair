@@ -3,9 +3,9 @@
  */
 $(function() {
 
-    function get_wo_result(stu_id) {
+    function get_wo_result() {
         var intervalId = setInterval(function() {
-            $.get(window.location.href + stu_id +'/result', function(res) {
+            $.get(window.location.href +'/result', function(res) {
                 clearInterval(intervalId);
                 $.hideLoading();
                 if (res.errmsg == 'ok') {
@@ -28,25 +28,36 @@ $(function() {
         var brand = $('#brand').val().replace(/\s+/g,'');
         var problem = $('#problem').val().replace(/\s+/g,'');
         var remark = $('#remark').val().replace(/\s+/g,'');
+        var scheduled = $('#time').val().replace(/\s+/g,'');
 
         // 验证各项信息不为空
-        if (!!tel_number && !!brand && !!problem) {
+        if (!!tel_number && !!brand && !!problem && scheduled) {
             // 判断绑定类型
             $.showLoading();
             var data = {
                 tel_number : tel_number,
                 brand : brand,
                 problem : problem,
-                remark : remark
+                remark : remark,
+                scheduled : scheduled
             };
             // 提交绑定信息
-            $.post(window.location.href, data, function(res) {
+            $.post(window.location.href +'/result', data, function(res) {
                 if (res.errmsg == 'ok') {
-
+                    get_wo_result()
+                }else {
+                    $.toptip(res.errmsg,'error');
+                    $.hideLoading();
                 }
             });
         } else {
+            // 提示输入格式不正确
+            $.toptip('信息填写错误，不要留空','error');
         }
+    });
+
+    $('#log_out').click(function () {
+
     });
 
     $('#wo_history').click(function () {

@@ -48,3 +48,16 @@ ValueError: View function did not return a response
 2017-03-14 17:54:00,695 ERROR: Unhandled Exception: Could not build url for endpoint 'login'. Did you mean 'log_in' instead? [in F:\python\ERepair\main\routes.py:80]
 2017-03-14 17:54:06,894 ERROR: Unhandled Exception: Could not build url for endpoint 'login'. Did you mean 'log_in' instead? [in F:\python\ERepair\main\routes.py:80]
 2017-03-15 19:20:32,412 ERROR: Unhandled Exception: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] 由于目标计算机积极拒绝，无法连接。)") [in F:\python\ERepair\main\routes.py:80]
+2017-03-18 20:54:57,384 ERROR: Exception on /succeed [GET] [in F:\python\vrpy\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "F:\python\vrpy\lib\site-packages\flask\app.py", line 1725, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+2017-03-19 17:12:09,531 ERROR: Unhandled Exception: 'wo' is undefined [in F:\python\ERepair\main\routes.py:90]
+2017-03-19 17:12:26,397 ERROR: Unhandled Exception: 'wo' is undefined [in F:\python\ERepair\main\routes.py:90]

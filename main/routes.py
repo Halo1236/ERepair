@@ -6,24 +6,7 @@ from flask import render_template, request, abort, jsonify, session, redirect, u
 from main.models import *
 
 
-# @app.route('/', methods=['GET', 'POST'])
-# def index():
-#     if request.method == 'POST':
-#         tel_number = request.form.get('tel_number', '')
-#         brand = request.form.get('brand', '')
-#         problem = request.form.get('problem', '')
-#         remark = request.form.get('remark', '')
-#         print(tel_number, brand)
-#         # set_wo(stu_id,stu_name,tel_number,brand,problem,remark)
-#         return jsonify({'errmsg': 'ok'})
-#     elif request.method == 'GET':
-#         return render_template('index.html', page_title=u'E修哥工单系统',
-#                                page_info=u'详细填写信息')
-#     else:
-#         abort(404)
-
-
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def log_in():
     if request.method == 'POST':
         stu_id = request.form.get('userid', '')
@@ -41,31 +24,67 @@ def log_in():
     else:
         abort(404)
 
-#
-# @app.route('/<stu_id>/result', methods=['GET'])
-# def wo_result(stu_id=None):
-#     if is_wo_exists(stu_id):
-#         return jsonify({'errmsg': 'ok'})
-#     else:
-#         return jsonify({'errmsg': '提交工单失败'})
-#
-#
 
-
-@app.route('/login/result', methods=['GET'])
+@app.route('/index', methods=['POST'])
 def check_login():
     stu_id = session.get('userid')
     stu_name = session.get('username')
     print(stu_id, stu_name)
     if stu_id and stu_name:
-        session.pop('userid', None)
-        session.pop('username', None)
         if is_user_exists(stu_id, stu_name):
             return render_template('index.html', page_title=u'填写维修工单')
         else:
-            abort(403)
+            session.pop('userid', None)
+            session.pop('username', None)
+            abort(404)
     else:
         return redirect(url_for('log_in'))
+
+
+@app.route('/index/result', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        stu_id = session.get('userid')
+        tel_number = request.form.get('tel_number', '')
+        brand = request.form.get('brand', '')
+        problem = request.form.get('problem', '')
+        scheduled = request.form.get('scheduled', '')
+        remark = request.form.get('remark', '')
+        print(tel_number, brand, problem, scheduled, remark)
+        if stu_id and tel_number and brand and problem and scheduled and remark:
+            set_wo_info(stu_id, tel_number, brand, problem, scheduled, remark)
+            errmsg = 'ok'
+        else:
+            errmsg = '数据存储发生错误'
+        return jsonify({'errmsg': errmsg})
+    else:
+        abort(404)
+
+
+@app.route('/index/succeed', methods=['GET', 'POST'])
+def msg():
+    return render_template('succeed.html')
+
+
+@app.route('/index/history', methods=['GET', 'POST'])
+def history():
+    if request.method == 'POST':
+        stu_id = session.get('userid')
+        stu_name = session.get('username')
+        if not stu_id:
+            return redirect(url_for('log_in'))
+        else:
+            content = get_wo_all(stu_id)
+        return render_template('history.html', page_title='历史工单',
+                           page_info=stu_name + ',同学你好!',
+                           content=content)
+
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    session.pop('userid', None)
+    session.pop('username', None)
+    return redirect(url_for('log_in'))
 
 
 @app.errorhandler(404)

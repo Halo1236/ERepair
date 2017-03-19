@@ -3,86 +3,88 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta content="telephone=no" name="format-detection" />
+    <meta content="telephone=no" name="format-detection"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>青创空间</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/title.css')}}"/>
-    <link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/1.0.0/css/jquery-weui.min.css" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/title.css') }}"/>
+    <link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/1.0.0/css/jquery-weui.min.css">
 </head>
 
 <body ontouchstart>
-    <div class="container js_container">
-        <div class="page">
-            <div class="hd">
-                <h1 class="page_title">{{ page_title }}</h1>
-                <p class="page_desc">
-                    <a class="wo_btn" id="wo_history">点击我查看历史工单</a>
-                </p>
-            </div>
-            <div class="weui-cells__title">填写信息</div>
-            <div class="weui-cells weui-cells_form">
-                <div class="weui-cell">
-                    <div class="weui-cell__hd">
-                        <label class="weui-label">手机号码</label>
-                    </div>
-                    <div class="weui-cell__bd weui-cell_primary">
-                        <input class="weui-input" id="tel_number" type="tel" required pattern="[0-9]{11}" maxlength="11" placeholder="请输入手机号码" />
-                    </div>
-                </div>
-                <div class="weui-cell">
-                    <div class="weui-cell__hd">
-                        <label for="name" class="weui-label">电脑品牌</label>
-                    </div>
-                    <div class="weui-cell__hd">
-                        <input class="weui-input" id="brand" type="text" value="">
-                    </div>
-                </div>
-                <div class="weui-cell">
-                    <div class="weui-cell__hd">
-                        <label for="name" class="weui-label">服务选择</label>
-                    </div>
-                    <div class="weui-cell__hd">
-                        <input class="weui-input" id="problem" type="text" value="">
-                    </div>
-                </div>
-                <div class="weui-cell">
-                    <div class="weui-cell__hd">
-                        <label for="name" class="weui-label">预约时间段</label>
-                    </div>
-                    <div class="weui-cell__hd">
-                        <input class="weui-input" id="time" type="text" value="">
-                    </div>
-                </div>
-                <div class="weui-cells__title">备注信息</div>
-                    <div class="weui-cells weui-cells_form">
-                        <div class="weui-cell">
-                            <div class="weui-cell__bd">
-                                <textarea class="weui-textarea" id="remark" placeholder="请详细的描述您的电脑出现的问题" rows="3"></textarea>
-                                <div class="weui-textarea-counter"><span>0</span>/200</div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            <div class="weui-agree">
-                <input id="warnning" type="checkbox" class="weui-agree__checkbox">
-                <span class="weui-agree__text">
-                    阅读并同意<a href="javascript:void(0);" >《相关条款》</a>
-                </span>
-            </div>
-            <div class="weui-btn-area">
-                <a  class="weui-btn weui-btn_disabled weui-btn_primary" id="submit">确定</a>
-            </div>
-            <br><br>
-            <div class="weui-footer">
-                <p class="weui-footer__text">Copyright ©宿迁学院-青创空间 2017</p>
+<div class="hd">
+    <h1 class="page_title">{{ page_title }}</h1>
+    <p class="page_desc">
+        <a class="wo_btn" id="wo_history">点击我查看历史工单</a>
+    </p>
+</div>
+<div class="weui-cells__title">填写信息</div>
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__hd">
+            <label class="weui-label">手机号码</label>
+        </div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input class="weui-input" id="tel_number" type="tel" pattern="[0-9]*" placeholder="请输入手机号码"/>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd">
+            <label for="name" class="weui-label">电脑品牌</label>
+        </div>
+        <div class="weui-cell__hd">
+            <input class="weui-input" id="brand" type="text" value="">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd">
+            <label for="name" class="weui-label">服务选择</label>
+        </div>
+        <div class="weui-cell__hd">
+            <input class="weui-input" id="problem" type="text" value="">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd">
+            <label for="name" class="weui-label">预约时间段</label>
+        </div>
+        <div class="weui-cell__hd">
+            <input class="weui-input" id="time" type="text" value="">
+        </div>
+    </div>
+    <div class="weui-cells__title">备注信息</div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <textarea class="weui-textarea" id="remark" placeholder="请详细的描述您的电脑出现的问题" rows="3"></textarea>
+                <div class="weui-textarea-counter"><span>0</span>/200</div>
             </div>
         </div>
     </div>
-    <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//cdn.bootcss.com/jquery-weui/1.0.0/js/jquery-weui.min.js"></script>
-    <script src="{{ url_for('static', filename='js/select_form.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</div>
+<div class="weui-agree">
+    <input id="warnning" type="checkbox" class="weui-agree__checkbox">
+    <span class="weui-agree__text">
+                    阅读并同意<a href="javascript:void(0);">《相关条款》</a>
+                </span>
+</div>
+<div class="weui-btn-area">
+    <a class="weui-btn weui-btn_disabled weui-btn_primary" id="submit">确定</a>
+</div>
+<br><br>
+<div class="weui-footer">
+    <p class="weui-footer__text">Copyright ©宿迁学院-青创空间 2017</p>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-weui/1.0.0/js/jquery-weui.min.js"></script>
+<script src="{{ url_for('static', filename='js/select_form.js') }}"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body)
+    });
+</script>
 </body>
 </html>

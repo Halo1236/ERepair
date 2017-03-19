@@ -9,7 +9,6 @@ from main.models import db
 工单数据模型
 """
 
-
 class Wo(db.Model):
 
     __table_args__ = {
