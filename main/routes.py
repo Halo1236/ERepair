@@ -25,7 +25,7 @@ def log_in():
         abort(404)
 
 
-@app.route('/index', methods=['POST'])
+@app.route('/index', methods=['GET'])
 def check_login():
     stu_id = session.get('userid')
     stu_name = session.get('username')
@@ -68,7 +68,7 @@ def msg():
 
 @app.route('/index/history', methods=['GET', 'POST'])
 def history():
-    if request.method == 'POST':
+    if request.method == 'GET':
         stu_id = session.get('userid')
         stu_name = session.get('username')
         if not stu_id:

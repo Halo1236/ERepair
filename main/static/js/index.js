@@ -3,26 +3,6 @@
  */
 $(function() {
 
-    // function get_wo_result() {
-    //     var intervalId = setInterval(function() {
-    //         $.get(window.location.href +'/result', function(res) {
-    //             clearInterval(intervalId);
-    //             $.hideLoading();
-    //             if (res.errmsg == 'ok') {
-    //                 $('.page.msg').show();
-    //                 // 绑定成功3秒后关闭窗口
-    //                 setTimeout(function() {
-    //                     wx.closeWindow();
-    //                 }, 3000);
-    //             } else {
-    //                 // 绑定失败，显示后端信息
-    //                 $('#err_msg').text(res.errmsg);
-    //                 $('.weui_dialog_alert').show();
-    //             }
-    //         });
-    //     }, 1000);
-    // }
-
     $('#submit').click(function() {
         var tel_number = $('#tel_number').val().replace(/\s+/g,'');
         var brand = $('#brand').val().replace(/\s+/g,'');
@@ -46,6 +26,7 @@ $(function() {
                 if (res.errmsg == 'ok') {
                     $.toptip('提交成功','success');
                     $.hideLoading();
+                    window.location.href = window.location.href+'/succeed';
                 }else {
                     $.toptip(res.errmsg,'error');
                     $.hideLoading();
@@ -58,7 +39,7 @@ $(function() {
     });
 
     $('#wo_history').click(function () {
-        $.post(window.location.href+'/history');
+        //$.post(window.location.href+'/history');
         window.location.href = window.location.href+'/history';
     });
 
