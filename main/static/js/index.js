@@ -38,10 +38,6 @@ $(function() {
         }
     });
 
-    $('#wo_history').click(function () {
-        //$.post(window.location.href+'/history');
-        window.location.href = window.location.href+'/history';
-    });
 
     $('#warnning').click(function () {
         $.alert("自定义的消息内容", "自定义条款", function() {

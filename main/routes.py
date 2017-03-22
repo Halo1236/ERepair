@@ -5,6 +5,18 @@ from flask import render_template, request, abort, jsonify, session, redirect, u
 
 from main.models import *
 
+@app.route('/admin', methods=['GET','POST'])
+def admin_login():
+    if request.method == 'POST':
+        admin_id = request.form.get('admin_id')
+        admin_name = request.form.get('admin_name')
+        print(admin_id,admin_name)
+        return jsonify({'errmsg':'ok'})
+    return render_template('admin.html')
+
+@app.route('/admin/index', methods=['GET','POST'])
+def admin_index():
+    return 'ok'
 
 @app.route('/', methods=['GET', 'POST'])
 def log_in():
@@ -38,10 +50,10 @@ def check_login():
             session.pop('username', None)
             abort(404)
     else:
-        return redirect(url_for('log_in'))
+        return redirect(url_for('.log_out'))
 
 
-@app.route('/index/result', methods=['GET', 'POST'])
+@app.route('/index/result', methods=['POST'])
 def index():
     if request.method == 'POST':
         stu_id = session.get('userid')
@@ -71,20 +83,19 @@ def history():
     if request.method == 'GET':
         stu_id = session.get('userid')
         stu_name = session.get('username')
-        if not stu_id:
-            return redirect(url_for('log_in'))
-        else:
+        if stu_id and stu_name:
             content = get_wo_all(stu_id)
-        return render_template('history.html', page_title='历史工单',
-                           page_info=stu_name + ',同学你好!',
-                           content=content)
-
+            return render_template('history.html', page_title='历史工单',
+                                   page_info=stu_name + ',同学你好!',
+                                   content=content)
+        else:
+            return redirect(url_for('.log_out'))
 
 @app.route('/logout', methods=['GET'])
 def logout():
     session.pop('userid', None)
     session.pop('username', None)
-    return redirect(url_for('log_in'))
+    return redirect(url_for('.log_in'))
 
 
 @app.errorhandler(404)

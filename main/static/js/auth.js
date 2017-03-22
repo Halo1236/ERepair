@@ -2,14 +2,6 @@
  * Created by WU.YH on 2017/3/8.
  */
 $(function () {
-    function get_user_result() {
-        var intervalId = setInterval(function() {
-            clearInterval(intervalId);
-            $.hideLoading();
-            $.post(window.location.href +'/index');
-        }, 2000);
-        window.location.href =window.location.href+'/index';
-    }
 
     $('#log_in').click(function() {
         var userid = $('#userid').val().replace(/\s+/g,'');
@@ -26,7 +18,8 @@ $(function () {
             // 提交绑定信息
             $.post(window.location.href, data, function(res) {
                 if (res.errmsg == 'ok') {
-                    get_user_result();
+                    $.hideLoading();
+                    window.location.href =window.location.href+'index';
                 }else {
                     $.toptip(res.errmsg,'error');
                     $.hideLoading();

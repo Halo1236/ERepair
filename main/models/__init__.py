@@ -34,8 +34,7 @@ def set_user_info(stu_id, stu_name):
     if not is_user_exists(stu_id, stu_name):
         user_mod = User(stu_id=stu_id, stu_name=stu_name)
         user_mod.save()
-        return True
-    return False
+    return True
 
 
 def is_wo_exists(stu_id):

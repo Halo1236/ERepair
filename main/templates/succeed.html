@@ -21,7 +21,7 @@
             <div class="weui-msg__opr-area">
                 <p class="weui-btn-area">
                     <a class="weui-btn weui-btn_primary" id="wo_history">我的工单</a>
-                    <a class="weui-btn weui-btn_primary" id="log_out">退出登录</a>
+                    <a class="weui-btn weui-btn_primary" href="{{ url_for('main.logout') }}">退出登录</a>
                 </p>
             </div>
             <div class="weui-msg__extra-area">
@@ -38,10 +38,6 @@
 <script>
     $(function () {
         FastClick.attach(document.body);
-
-        $('#log_out').click(function () {
-            window.location.href = 'http://' + window.location.host + '/logout';
-        });
 
         $('#wo_history').click(function () {
             window.location.href = 'http://' + window.location.host + '/index/history';
