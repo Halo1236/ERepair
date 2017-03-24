@@ -9,6 +9,7 @@ from main.models import db
 工单数据模型
 """
 
+
 class Wo(db.Model):
 
     __table_args__ = {
@@ -19,6 +20,7 @@ class Wo(db.Model):
     '''
 	id: 记录编号
 	stu_id: 学号
+	stu_name: 姓名
 	tel_number: 手机号码
 	brand: 电脑品牌
 	ishandle: 是否处理（0未处理，1已处理）
@@ -31,6 +33,7 @@ class Wo(db.Model):
 	'''
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     stu_id = db.Column(db.String(20), nullable=False)
+    stu_name = db.Column(db.String(20), nullable=False)
     tel_number = db.Column(db.String(20), nullable=False)
     brand = db.Column(db.String(20), nullable=False)
     ishandle = db.Column(db.Integer, default=0, nullable=False)
@@ -42,8 +45,17 @@ class Wo(db.Model):
     remark = db.Column(db.String(200), nullable=True)
     regtime = db.Column(db.DateTime, default=datetime.now, nullable=False)
 
-    def __init__(self, stu_id, tel_number, problem, brand, scheduled, remark):
+    def __init__(
+            self,
+            stu_id,
+            stu_name,
+            tel_number,
+            problem,
+            brand,
+            scheduled,
+            remark):
         self.stu_id = stu_id
+        self.stu_name = stu_name
         self.tel_number = tel_number
         self.remark = remark
         self.problem = problem

@@ -52,7 +52,7 @@
             </div>
             <div class="weui-form-preview__ft">
                 <a class="weui-form-preview__btn weui-form-preview__btn_primary"
-                   onclick="cancelde({{ wo.id }})">取消预约</a>
+                   onclick="canceled({{ wo.id }})">取消预约</a>
                 <a class="weui-form-preview__btn weui-form-preview__btn_primary"
                    onclick="confirmed({{ wo.id }})">确认评价</a>
             </div>
@@ -118,19 +118,15 @@
         FastClick.attach(document.body);
     });
 
-    {#    $('#wo_history').click(function () {#}
-    {#        $.post('http://' + window.location.host + '/history');#}
-    {#    });#}
+    function canceled(wo_id) {
+        $.alert("自定义的消息内容", "自定义条款", function () {
+            $('#submit').removeClass('weui-btn_disabled');
+        });
+    }
 
-    {#    function cancel(wo_id) {#}
-    {#        $.alert("自定义的消息内容", "自定义条款", function () {#}
-    {#            $('#submit').removeClass('weui-btn_disabled');#}
-    {#        });#}
-    {#    }#}
-    {##}
-    {#    function confirm() {#}
-    {##}
-    {#    }#}
+    function confirmed() {
+
+    }
 </script>
 </body>
 </html>

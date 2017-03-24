@@ -5,18 +5,41 @@ from flask import render_template, request, abort, jsonify, session, redirect, u
 
 from main.models import *
 
-@app.route('/admin', methods=['GET','POST'])
+
+@app.route('/admin/test')
+def test():
+    return render_template('admin_index.html')
+
+
+@app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
-        admin_id = request.form.get('admin_id')
-        admin_name = request.form.get('admin_name')
-        print(admin_id,admin_name)
-        return jsonify({'errmsg':'ok'})
-    return render_template('admin.html')
+        admin_name = request.form.get('admin_name', '')
+        admin_passwd = request.form.get('admin_passwd', '')
+        session['admin_name'] = admin_name
+        session['admin_passwd'] = admin_passwd
+        if is_admin_exists(admin_name, admin_passwd):
+            return jsonify({'errmsg': 'ok'})
+        else:
+            return jsonify({'errmsg': 'error'})
+    else:
+        return render_template('admin.html')
 
-@app.route('/admin/index', methods=['GET','POST'])
+
+@app.route('/admin/index', methods=['GET', 'POST'])
 def admin_index():
-    return 'ok'
+    admin_name = session.get('admin_name')
+    admin_passwd = session.get('admin_passwd')
+    if request.method == 'GET':
+        print(admin_name, admin_passwd)
+        if admin_name and admin_passwd:
+            return render_template('admin_index.html')
+        else:
+            session.pop('admin_name', None)
+            session.pop('admin_passwd', None)
+            return redirect(url_for('admin_login'))
+
+
 
 @app.route('/', methods=['GET', 'POST'])
 def log_in():
@@ -46,25 +69,31 @@ def check_login():
         if is_user_exists(stu_id, stu_name):
             return render_template('index.html', page_title=u'填写维修工单')
         else:
-            session.pop('userid', None)
-            session.pop('username', None)
             abort(404)
     else:
-        return redirect(url_for('.log_out'))
+        return redirect(url_for('log_out'))
 
 
 @app.route('/index/result', methods=['POST'])
 def index():
     if request.method == 'POST':
         stu_id = session.get('userid')
+        stu_name = session.get('username')
         tel_number = request.form.get('tel_number', '')
         brand = request.form.get('brand', '')
         problem = request.form.get('problem', '')
         scheduled = request.form.get('scheduled', '')
         remark = request.form.get('remark', '')
         print(tel_number, brand, problem, scheduled, remark)
-        if stu_id and tel_number and brand and problem and scheduled and remark:
-            set_wo_info(stu_id, tel_number, brand, problem, scheduled, remark)
+        if stu_id and stu_name and tel_number and brand and problem and scheduled and remark:
+            set_wo_info(
+                stu_id,
+                stu_name,
+                tel_number,
+                brand,
+                problem,
+                scheduled,
+                remark)
             errmsg = 'ok'
         else:
             errmsg = '数据存储发生错误'
@@ -85,17 +114,21 @@ def history():
         stu_name = session.get('username')
         if stu_id and stu_name:
             content = get_wo_all(stu_id)
-            return render_template('history.html', page_title='历史工单',
-                                   page_info=stu_name + ',同学你好!',
-                                   content=content)
+            return render_template(
+                'history.html',
+                page_title='历史工单',
+                page_info=stu_name +
+                ',同学你好!<a class="wo_btn" href="{{ url_for(\'logout\') }}">点击我退出</a>',
+                content=content)
         else:
-            return redirect(url_for('.log_out'))
+            return redirect(url_for('log_out'))
+
 
 @app.route('/logout', methods=['GET'])
 def logout():
     session.pop('userid', None)
     session.pop('username', None)
-    return redirect(url_for('.log_in'))
+    return redirect(url_for('log_in'))
 
 
 @app.errorhandler(404)

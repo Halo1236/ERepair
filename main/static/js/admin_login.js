@@ -3,12 +3,12 @@
  */
 $(function () {
     $('#admin_login').click(function () {
-        var admin_id = $('#admin_id').val().trim();
         var admin_name = $('#admin_name').val().trim();
-        if (admin_id && admin_name) {
+        var admin_passwd = $('#admin_passwd').val().trim();
+        if (admin_passwd && admin_name) {
             var data = {
-                admin_id: admin_id,
-                admin_name: admin_name
+                admin_name: admin_name,
+                admin_passwd: admin_passwd
             };
             $.post(window.location.href, data, function (res) {
                 if (res.errmsg == 'ok') {

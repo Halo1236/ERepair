@@ -21,13 +21,13 @@
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
-                        <input type="tel" id="admin_id" placeholder="请输入管理员编号">
+                        <input type="text" id="admin_name" placeholder="请输入管理员姓名">
                         <i class="user icon"></i>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui left icon input">
-                        <input type="text" id="admin_name" placeholder="请输入管理员姓名">
+                        <input type="password" id="admin_passwd" placeholder="请输入管理员密码">
                         <i class="lock icon"></i>
                     </div>
                 </div>
@@ -37,6 +37,7 @@
     </div>
 </div>
 <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/semantic-ui/2.2.9/semantic.min.js"></script>
 <script src="{{ url_for('static', filename='js/admin_login.js') }}"></script>
 </body>
 </html>

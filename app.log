@@ -62,3 +62,4 @@ ValueError: View function did not return a response
 2017-03-19 17:12:09,531 ERROR: Unhandled Exception: 'wo' is undefined [in F:\python\ERepair\main\routes.py:90]
 2017-03-19 17:12:26,397 ERROR: Unhandled Exception: 'wo' is undefined [in F:\python\ERepair\main\routes.py:90]
 2017-03-22 22:53:27,466 ERROR: Unhandled Exception: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] 由于目标计算机积极拒绝，无法连接。)") [in F:\python\ERepair\main\routes.py:109]
+2017-03-23 21:25:21,804 ERROR: Unhandled Exception: 'pk1' is undefined [in F:\python\ERepair\main\routes.py:132]
