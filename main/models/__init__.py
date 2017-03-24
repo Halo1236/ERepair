@@ -15,8 +15,16 @@ from main.models.wo import Wo
 from main.models.user import User
 
 
-def get_wo_all(stu_id):
+def get_wo_all_by(stu_id):
     wo_info = Wo.query.filter_by(stu_id=stu_id).all()
+    if not wo_info:
+        return None
+    else:
+        return wo_info
+
+
+def get_wo_all():
+    wo_info = Wo.query.all()
     if not wo_info:
         return None
     else:
@@ -46,6 +54,11 @@ def set_user_info(stu_id, stu_name):
         user_mod = User(stu_id=stu_id, stu_name=stu_name)
         user_mod.save()
     return True
+
+
+def set_admin_info(admin_name, admin_passwd):
+    admin_mod = Administrator(admin_name=admin_name, admin_passwd=admin_passwd)
+    admin_mod.save()
 
 
 def is_wo_exists(stu_id):

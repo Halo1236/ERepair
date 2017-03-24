@@ -13,7 +13,11 @@
 <body ontouchstart>
 <div class="hd">
     <h1 class="page_title">{{ page_title }}</h1>
-    <p class="page_desc">{{ page_info }}</p>
+    <p class="page_desc">
+        <span>
+            {{ page_info }}<a class="wo_btn" href="{{ url_for('logout') }}">点击我退出</a>
+        </span>
+    </p>
 </div>
 {% for wo in content %}
     {% if wo.ishandle == 0 %}

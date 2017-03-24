@@ -10,7 +10,6 @@ from main.models import *
 def test():
     return render_template('admin_index.html')
 
-
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
@@ -25,6 +24,12 @@ def admin_login():
     else:
         return render_template('admin.html')
 
+@app.route('/admin/set_admin/abc', methods=['POST'])
+def set_admin():
+    if request.method =='POST':
+        admin_name = request.form.get('admin_name','')
+        admin_passwd = request.form.get('admin_passwd','')
+        set_admin_info(admin_name,admin_passwd)
 
 @app.route('/admin/index', methods=['GET', 'POST'])
 def admin_index():
@@ -33,6 +38,7 @@ def admin_index():
     if request.method == 'GET':
         print(admin_name, admin_passwd)
         if admin_name and admin_passwd:
+            content = get_wo_all()
             return render_template('admin_index.html')
         else:
             session.pop('admin_name', None)
@@ -113,12 +119,11 @@ def history():
         stu_id = session.get('userid')
         stu_name = session.get('username')
         if stu_id and stu_name:
-            content = get_wo_all(stu_id)
+            content = get_wo_all_by(stu_id)
             return render_template(
                 'history.html',
                 page_title='历史工单',
-                page_info=stu_name +
-                ',同学你好!<a class="wo_btn" href="{{ url_for(\'logout\') }}">点击我退出</a>',
+                page_info=stu_name +',同学你好!',
                 content=content)
         else:
             return redirect(url_for('log_out'))
