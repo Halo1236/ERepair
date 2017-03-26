@@ -71,7 +71,7 @@ def is_wo_exists(stu_id):
 
 def is_admin_exists(admin_name, admin_passwd):
     admin_info = Administrator.query.filter_by(
-        and_(admin_name=admin_name, admin_passwd=admin_passwd)).first()
+        admin_name=admin_name, admin_passwd=admin_passwd).first()
     if not admin_info:
         return False
     else:

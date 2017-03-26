@@ -39,8 +39,30 @@
         {#        </div>#}
     </div>
 </div>
+<div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        维修完成，填写信息
+    </div>
+    <div class="content">
+        <div class="ui ignored error message" id="error" style="display:none;"></div>
+        <div class="ui ignored positive message" id="success" style="display:none;"></div>
+        <form class="ui form" id="lg_form">
+            <div class="field">
+                <label>S/N码</label>
+                <input type="tel" id="sn" placeholder="请输入S/N码"/>
+            </div>
+            <div class="field">
+                <label>维修人员姓名</label>
+                <input type="text" id="admin_name" placeholder="请输入维修人员姓名"/>
+            </div>
+            <button type="submit" class="fluid ui teal button" id="sign_in">登录</button>
+        </form>
+        <br>
+    </div>
+</div>
 <div class="ui container" id="container">
-    <table class="ui celled  table">
+    <table class="ui celled tablet stackable table">
         <thead>
         <tr>
             <th>工单编号</th>
@@ -51,33 +73,36 @@
             <th>问题</th>
             <th>备注</th>
             <th>提交时间</th>
+            <th>预约时间</th>
             <th>工单状态</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>约翰</td>
-            <td>已审核</td>
-            <td>无</td>
-        </tr>
-        <tr>
-            <td>约翰</td>
-            <td>已审核</td>
-            <td>需要信息</td>
-        </tr>
-        <tr>
-            <td>约翰</td>
-            <td>拒绝</td>
-            <td>无</td>
-        </tr>
+        {% for wo in content %}
+            {% if wo.ishandle == 0 %}
+                <tr>
+                    <td>{{ wo.id }}</td>
+                    <td>{{ wo.stu_id }}</td>
+                    <td>{{ wo.stu_name }}</td>
+                    <td>{{ wo.tel_num }}</td>
+                    <td>{{ wo.brand }}</td>
+                    <td>{{ wo.problem }}</td>
+                    <td>{{ wo.remark }}</td>
+                    <td>{{ wo.regtime }}</td>
+                    <td>{{ wo.wo.scheduled }}</td>
+                    <td>
+                        {% if wo.ishandle ==0 %}
+                            未处理
+                        {% elif wo.ishandle ==1 %}
+                            已处理
+                        {% else %}
+                            已取消
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
         </tbody>
-        <tfoot>
-        <tr>
-            <th>3 个人</th>
-            <th>2 个审核</th>
-            <th></th>
-        </tr>
-        </tfoot>
     </table>
 </div>
 <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>

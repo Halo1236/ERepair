@@ -10,6 +10,7 @@ from main.models import *
 def test():
     return render_template('admin_index.html')
 
+
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
@@ -24,12 +25,15 @@ def admin_login():
     else:
         return render_template('admin.html')
 
+
 @app.route('/admin/set_admin/abc', methods=['POST'])
 def set_admin():
-    if request.method =='POST':
-        admin_name = request.form.get('admin_name','')
-        admin_passwd = request.form.get('admin_passwd','')
-        set_admin_info(admin_name,admin_passwd)
+    if request.method == 'POST':
+        admin_name = request.form.get('admin_name', '')
+        admin_passwd = request.form.get('admin_passwd', '')
+        set_admin_info(admin_name, admin_passwd)
+        return 'ok'
+
 
 @app.route('/admin/index', methods=['GET', 'POST'])
 def admin_index():
@@ -39,12 +43,11 @@ def admin_index():
         print(admin_name, admin_passwd)
         if admin_name and admin_passwd:
             content = get_wo_all()
-            return render_template('admin_index.html')
+            return render_template('admin_index.html', content=content)
         else:
             session.pop('admin_name', None)
             session.pop('admin_passwd', None)
             return redirect(url_for('admin_login'))
-
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -123,7 +126,7 @@ def history():
             return render_template(
                 'history.html',
                 page_title='历史工单',
-                page_info=stu_name +',同学你好!',
+                page_info=stu_name + ',同学你好!',
                 content=content)
         else:
             return redirect(url_for('log_out'))

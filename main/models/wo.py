@@ -26,6 +26,7 @@ class Wo(db.Model):
 	ishandle: 是否处理（0未处理，1已处理）
 	problem: 问题
 	scheduled: 预约时间
+	sn码
 	admin_id: 维修人员编号
 	evaluation: 维修评价(0-5分)
 	remark: 备注
