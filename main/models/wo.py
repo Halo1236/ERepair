@@ -28,7 +28,7 @@ class Wo(db.Model):
 	scheduled: 预约时间
 	sn码
 	admin_id: 维修人员编号
-	evaluation: 维修评价(0-5分)
+	evaluation: 维修评价(1-5分)
 	remark: 备注
 	regtime: 提交时间
 	'''

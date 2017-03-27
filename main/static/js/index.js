@@ -26,7 +26,9 @@ $(function() {
                 if (res.errmsg == 'ok') {
                     $.toptip('提交成功','success');
                     $.hideLoading();
-                    window.location.href = window.location.href+'/succeed';
+                    setTimeout(function () {
+                        window.location.href = window.location.href+'/succeed';
+                    }, 500);
                 }else {
                     $.toptip(res.errmsg,'error');
                     $.hideLoading();

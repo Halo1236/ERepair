@@ -23,6 +23,26 @@ def get_wo_all_by(stu_id):
         return wo_info
 
 
+def update_wo_handle(wo_id, wo_ishandle):
+    wo_info = Wo.query.filter_by(id=wo_id).first()
+    if not wo_info:
+        return False
+    else:
+        wo_info.ishandle = wo_ishandle
+        wo_info.update()
+        return True
+
+
+def update_wo_evaluation(wo_id, wo_evaluation):
+    wo_info = Wo.query.filter_by(id=wo_id).first()
+    if not wo_info:
+        return False
+    else:
+        wo_info.evaluation = wo_evaluation
+        wo_info.update()
+        return True
+
+
 def get_wo_all():
     wo_info = Wo.query.all()
     if not wo_info:

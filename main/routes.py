@@ -130,7 +130,23 @@ def history():
                 content=content)
         else:
             return redirect(url_for('log_out'))
-
+    else:
+        stu_id = session.get('userid')
+        stu_name = session.get('username')
+        wo_id = request.form.get('wo_id','')
+        wo_ishandle = request.form.get('wo_ishandle','')
+        wo_evaluation = request.form.get('wo_evaluation','')
+        print(wo_id,wo_ishandle,wo_evaluation)
+        if stu_name and stu_id:
+            if wo_ishandle:
+                if update_wo_handle(wo_id,wo_ishandle):
+                    errmsg = 'ok'
+            if wo_evaluation:
+                if update_wo_evaluation(wo_id,wo_evaluation):
+                    errmsg = 'ok'
+        else:
+            errmsg = 'err_login'
+        return jsonify({'errmsg':errmsg})
 
 @app.route('/logout', methods=['GET'])
 def logout():

@@ -19,7 +19,9 @@ $(function () {
             $.post(window.location.href, data, function(res) {
                 if (res.errmsg == 'ok') {
                     $.hideLoading();
-                    window.location.href =window.location.href+'index';
+                    setTimeout(function () {
+                        window.location.href =window.location.href+'index';
+                    }, 500);
                 }else {
                     $.toptip(res.errmsg,'error');
                     $.hideLoading();
