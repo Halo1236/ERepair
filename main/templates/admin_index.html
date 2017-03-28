@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>青创空间</title>
+    <title>维修工单处理</title>
     <link href="//cdn.bootcss.com/semantic-ui/2.2.9/semantic.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}"/>
 </head>
@@ -13,30 +13,21 @@
         <a class="header item" href="/">
             <img src="{{ url_for('static', filename='images/logo3.png') }}" alt="">
         </a>
-        <a class="item" href="">发现</a>
-        <a class="item" href="">手气不错</a>
+        <a class="item" href="/admin/index/nothandle" id="nothandle">未处理</a>
+        <a class="item" href="/admin/index/ishandle" id="ishandle">已处理</a>
         <div class="item">
             <form action="" method="get">
                 <div class="ui search">
                     <div class="ui icon input">
                         <i class="search icon"></i>
-                        <input type="text" placeholder="搜索..." name="q" autocomplete="off">
+                        <input type="text" placeholder="按学号搜索..." name="q" autocomplete="off">
                     </div>
                 </div>
             </form>
         </div>
-        {#        <div class="right menu">#}
-        {#            {% if current_user.is_authenticated %}#}
-        {#                <a href="{{ url_for('main.create_entry') }}" class="item ui button">创建条目</a>#}
-        {#                <a class="item" href="{{ url_for('users.profile' ) }}" id="profile">#}
-        {#                    {{ current_user.username }}#}
-        {#                </a>#}
-        {#                <a class="item" href="{{ url_for('users.logout') }}" id="logout">登出</a>#}
-        {#            {% else %}#}
-        {#                <a class="item" href="{{ url_for('users.register') }}" id="login">登录</a>#}
-        {#                <a class="item" href="#" id="what">什么是pkyx?</a>#}
-        {#            {% endif %}#}
-        {#        </div>#}
+        <div class="right menu">
+            <a class="item" href="{{ url_for('admin_logout') }}" id="admin_logout">登出</a>
+        </div>
     </div>
 </div>
 <div class="ui modal">
@@ -79,28 +70,26 @@
         </thead>
         <tbody>
         {% for wo in content %}
-            {% if wo.ishandle == 0 %}
-                <tr>
-                    <td>{{ wo.id }}</td>
-                    <td>{{ wo.stu_id }}</td>
-                    <td>{{ wo.stu_name }}</td>
-                    <td>{{ wo.tel_num }}</td>
-                    <td>{{ wo.brand }}</td>
-                    <td>{{ wo.problem }}</td>
-                    <td>{{ wo.remark }}</td>
-                    <td>{{ wo.regtime }}</td>
-                    <td>{{ wo.scheduled }}</td>
-                    <td>
-                        {% if wo.ishandle ==0 %}
-                            未处理
-                        {% elif wo.ishandle ==1 %}
-                            已处理
-                        {% else %}
-                            已取消
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endif %}
+            <tr>
+                <td>{{ wo.id }}</td>
+                <td>{{ wo.stu_id }}</td>
+                <td>{{ wo.stu_name }}</td>
+                <td>{{ wo.tel_number }}</td>
+                <td>{{ wo.brand }}</td>
+                <td>{{ wo.problem }}</td>
+                <td>{{ wo.remark }}</td>
+                <td>{{ wo.regtime }}</td>
+                <td>{{ wo.scheduled }}</td>
+                <td>
+                    {% if wo.ishandle ==0 %}
+                        未处理
+                    {% elif wo.ishandle ==1 %}
+                        已处理
+                    {% else %}
+                        已取消
+                    {% endif %}
+                </td>
+            </tr>
         {% endfor %}
         </tbody>
     </table>

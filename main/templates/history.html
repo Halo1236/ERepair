@@ -15,7 +15,7 @@
     <h1 class="page_title">{{ page_title }}</h1>
     <p class="page_desc">
         <span>
-            {{ page_info }}<a class="wo_btn" href="{{ url_for('logout') }}">点击我退出</a>
+            {{ page_info }}<a class="wo_btn" href="{{ url_for('log_out') }}">点击我退出</a>
         </span>
     </p>
 </div>
@@ -58,11 +58,11 @@
                 <a class="weui-form-preview__btn weui-form-preview__btn_primary"
                    onclick="canceled({{ wo.id }})">取消预约</a>
                 <a class="weui-form-preview__btn weui-form-preview__btn_primary"
-                   onclick="confirmed({{ wo.id }})">确认评价</a>
+                   onclick="confirmed()">确认评价</a>
             </div>
         </div>
         <br>
-    {% else %}
+    {% elif wo.ishandle == 1 %}
         <div class="weui-form-preview">
             <div class="weui-form-preview__hd">
                 <div class="weui-form-preview__item">
@@ -106,7 +106,7 @@
             </div>
             <div class="weui-form-preview__ft">
                 <a class="weui-form-preview__btn weui-form-preview__btn_primary"
-                   onclick="canceled({{ wo.id }})">取消预约</a>
+                   onclick="canceled()">取消预约</a>
                 <a class="weui-form-preview__btn weui-form-preview__btn_primary"
                    onclick="confirmed({{ wo.id }})">确认评价</a>
             </div>
@@ -123,7 +123,7 @@
     });
 
     function canceled(wo_id) {
-        $.confirm("您确定要取消工单编号为" + wo_id + "的工单吗?", "确认取消?", function () {
+        $.confirm("您确定要取消工单编号为 " + wo_id + " 的工单吗?", "确认取消?", function () {
             $.post(window.location.href, {wo_id: wo_id, wo_ishandle: 3}, function (res) {
                 if (res == 'ok') {
                     window.location.href = window.location.href;

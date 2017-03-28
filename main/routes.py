@@ -35,15 +35,20 @@ def set_admin():
         return 'ok'
 
 
-@app.route('/admin/index', methods=['GET', 'POST'])
-def admin_index():
+@app.route('/admin/index/<ishandle>', methods=['GET', 'POST'])
+def admin_index(ishandle=None):
     admin_name = session.get('admin_name')
     admin_passwd = session.get('admin_passwd')
     if request.method == 'GET':
         print(admin_name, admin_passwd)
         if admin_name and admin_passwd:
-            content = get_wo_all()
-            return render_template('admin_index.html', content=content)
+            if ishandle == 'ishandle':
+                content = get_wo_all_by_ishandle(1)
+            elif ishandle == 'nothandle':
+                content = get_wo_all_by_ishandle(0)
+            else:
+                content = get_wo_all()
+            return render_template('admin_index.html', content)
         else:
             session.pop('admin_name', None)
             session.pop('admin_passwd', None)
@@ -118,11 +123,11 @@ def msg():
 
 @app.route('/index/history', methods=['GET', 'POST'])
 def history():
+    stu_id = session.get('userid')
+    stu_name = session.get('username')
     if request.method == 'GET':
-        stu_id = session.get('userid')
-        stu_name = session.get('username')
         if stu_id and stu_name:
-            content = get_wo_all_by(stu_id)
+            content = get_wo_all_by_stuid(stu_id)
             return render_template(
                 'history.html',
                 page_title='历史工单',
@@ -131,22 +136,21 @@ def history():
         else:
             return redirect(url_for('log_out'))
     else:
-        stu_id = session.get('userid')
-        stu_name = session.get('username')
-        wo_id = request.form.get('wo_id','')
-        wo_ishandle = request.form.get('wo_ishandle','')
-        wo_evaluation = request.form.get('wo_evaluation','')
-        print(wo_id,wo_ishandle,wo_evaluation)
+        wo_id = request.form.get('wo_id', '')
+        wo_ishandle = int(request.form.get('wo_ishandle', ''))
+        wo_evaluation = int(request.form.get('wo_evaluation', ''))
+        print(wo_id, wo_ishandle, wo_evaluation)
         if stu_name and stu_id:
             if wo_ishandle:
-                if update_wo_handle(wo_id,wo_ishandle):
+                if update_wo_handle(wo_id, wo_ishandle):
                     errmsg = 'ok'
             if wo_evaluation:
-                if update_wo_evaluation(wo_id,wo_evaluation):
+                if update_wo_evaluation(wo_id, wo_evaluation):
                     errmsg = 'ok'
         else:
             errmsg = 'err_login'
-        return jsonify({'errmsg':errmsg})
+        return jsonify({'errmsg': errmsg})
+
 
 @app.route('/logout', methods=['GET'])
 def log_out():

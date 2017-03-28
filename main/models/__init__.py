@@ -15,13 +15,19 @@ from main.models.wo import Wo
 from main.models.user import User
 
 
-def get_wo_all_by(stu_id):
+def get_wo_all_by_stuid(stu_id):
     wo_info = Wo.query.filter_by(stu_id=stu_id).all()
     if not wo_info:
         return None
     else:
         return wo_info
 
+def get_wo_all_by_ishandle(ishandle):
+    wo_info = Wo.query.filter_by(ishandle=ishandle).all()
+    if not wo_info:
+        return None
+    else:
+        return wo_info
 
 def update_wo_handle(wo_id, wo_ishandle):
     wo_info = Wo.query.filter_by(id=wo_id).first()
