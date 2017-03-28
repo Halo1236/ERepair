@@ -149,7 +149,7 @@ def history():
         return jsonify({'errmsg':errmsg})
 
 @app.route('/logout', methods=['GET'])
-def logout():
+def log_out():
     session.pop('userid', None)
     session.pop('username', None)
     return redirect(url_for('log_in'))
