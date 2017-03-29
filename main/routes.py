@@ -35,25 +35,24 @@ def set_admin():
         return 'ok'
 
 
-@app.route('/admin/index/<ishandle>', methods=['GET', 'POST'])
-def admin_index(ishandle=None):
+@app.route('/admin/index/<handle>', methods=['GET', 'POST'])
+def admin_index(handle=None):
     admin_name = session.get('admin_name')
     admin_passwd = session.get('admin_passwd')
     if request.method == 'GET':
         print(admin_name, admin_passwd)
         if admin_name and admin_passwd:
-            if ishandle == 'ishandle':
+            if handle == 'ishandle':
                 content = get_wo_all_by_ishandle(1)
-            elif ishandle == 'nothandle':
+            elif handle == 'nothandle':
                 content = get_wo_all_by_ishandle(0)
             else:
                 content = get_wo_all()
-            return render_template('admin_index.html', content)
+            return render_template('admin_index.html',content=content)
         else:
             session.pop('admin_name', None)
             session.pop('admin_passwd', None)
             return redirect(url_for('admin_login'))
-
 
 @app.route('/', methods=['GET', 'POST'])
 def log_in():
