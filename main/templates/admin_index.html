@@ -51,8 +51,7 @@
             <a class="fluid ui teal button" id="do_handle">确定</a>
         </form>
         <br>
-    </
-    >
+    </div>
 </div>
 <div class="ui container" id="container">
     <table class="ui celled tablet stackable table">
@@ -87,42 +86,19 @@
                     <td>{{ wo.remark }}</td>
                     <td>{{ wo.regtime }}</td>
                     <td>{{ wo.scheduled }}</td>
-                    <td>
-                        {% if wo.admin_name != None %}
-                            {{ wo.admin_name }}
-                        {% else %}
-                            空
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if wo.admin_remark != None %}
-                            {{ wo.admin_remark }}
-                        {% else %}
-                            空
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if wo.sn != None %}
-                            {{ wo.sn }}
-                        {% else %}
-                            空
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if wo.evaluation != None %}
-                            {{ wo.evaluation }}
-                        {% else %}
-                            空
-                        {% endif %}
-                    </td>
+                    <td>{{ wo.admin_name }}</td>
+                    <td>{{ wo.admin_remark }}</td>
+                    <td>{{ wo.sn }}</td>
+                    <td>{ wo.evaluation }}</td>
                     <td>
                         {% if wo.ishandle ==0 %}
                             未处理
                         {% elif wo.ishandle ==1 %}
                             已处理
+                        {% elif wo.ishandle ==2 %}
+                            已完成
                         {% else %}
                             已取消
-                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
@@ -135,7 +111,7 @@
 <script>
     function handled(wo_id) {
         $('.ui.modal').modal('show');
-        $('#wo_id').value = wo_id;
+        $('#wo_id').val(wo_id);
     }
 
     $('#do_handle').click(function () {
@@ -144,7 +120,7 @@
         var admin_remark = $('#admin_remark').val().trim();
 
         if (wo_id && sn && admin_remark) {
-            $.post(window.location.href, {id: wo_id, sn: sn, admin_remark: admin_remark}, function (res) {
+            $.post(window.location.href, {id: wo_id, wo_sn: sn, admin_remark: admin_remark}, function (res) {
                 if (res.errmsg == 'ok') {
                     setTimeout(function () {
                         window.location.href = window.location.href;
@@ -157,6 +133,7 @@
             $("#error").html("<p>信息错误</p>").show();
         }
     });
+
 </script>
 </body>
 </html>

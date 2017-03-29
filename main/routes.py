@@ -36,7 +36,6 @@ def admin_index(handle=None):
     admin_name = session.get('admin_name')
     admin_passwd = session.get('admin_passwd')
     if request.method == 'GET':
-        print(admin_name, admin_passwd)
         if admin_name and admin_passwd:
             if handle == 'ishandle':
                 content = get_wo_all_by_ishandle(1)
@@ -51,10 +50,11 @@ def admin_index(handle=None):
             return redirect(url_for('admin_login'))
     else:
         id = request.form.get('id', '')
-        sn = request.form.get('sn', '')
+        wo_sn = request.form.get('wo_sn', '')
         admin_remark = request.form.get('admin_remark', '')
-        if sn and admin_remark and id:
-            if update_wo_by_id(id, sn, admin_remark):
+        print(id, wo_sn, admin_remark)
+        if wo_sn and admin_remark and wo_sn and admin_name:
+            if update_wo_by_id(id, wo_sn, admin_remark, admin_name):
                 errmsg = 'ok'
             else:
                 errmsg = '存储发送错误'

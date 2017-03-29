@@ -31,11 +31,13 @@ def get_wo_all_by_ishandle(ishandle):
         return wo_info
 
 
-def update_wo_by_id(id, sn, admin_remark):
-    wo_info = Wo.query.filter_by(id=id).all()
+def update_wo_by_id(id, sn, admin_remark, admin_name):
+    wo_info = Wo.query.filter_by(id=id).first()
     if not wo_info:
         return False
     else:
+        wo_info.admin_name = admin_name
+        wo_info.ishandle = 1
         wo_info.sn = sn
         wo_info.admin_remark = admin_remark
         wo_info.update()
@@ -57,6 +59,7 @@ def update_wo_evaluation(wo_id, wo_evaluation):
     if not wo_info:
         return False
     else:
+        wo_info.ishandle = 2
         wo_info.evaluation = wo_evaluation
         wo_info.update()
         return True
@@ -120,7 +123,7 @@ def is_admin_exists(admin_name, admin_passwd):
 def is_user_exists(stu_id, stu_name):
     if not (User.query.filter_by(
             stu_id=stu_id).first() or User.query.filter_by(
-            stu_name=stu_name).first()):
+        stu_name=stu_name).first()):
         return False
     else:
         return True

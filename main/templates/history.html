@@ -22,98 +22,149 @@
 {% if content !=None %}
     {% for wo in content %}
         {% if wo.ishandle == 0 %}
-            <div class="weui-form-preview">
-                <div class="weui-form-preview__hd">
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">工单状态</label>
-                        <em class="weui-form-preview__value">未处理</em>
-                    </div>
-                </div>
-                <div class="weui-form-preview__bd">
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">工单编号</label>
-                        <span class="weui-form-preview__value">{{ wo.id }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">手机号码</label>
-                        <span class="weui-form-preview__value">{{ wo.tel_number }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">提交时间</label>
-                        <span class="weui-form-preview__value">{{ wo.regtime }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">电脑品牌</label>
-                        <span class="weui-form-preview__value">{{ wo.brand }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">服务选择</label>
-                        <span class="weui-form-preview__value">{{ wo.problem }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">预约时间</label>
-                        <span class="weui-form-preview__value">{{ wo.scheduled }}</span>
-                    </div>
-                </div>
-                <div class="weui-form-preview__ft">
-                    <a class="weui-form-preview__btn weui-form-preview__btn_primary"
-                       onclick="canceled({{ wo.id }})">取消预约</a>
-                    <a class="weui-form-preview__btn weui-form-preview__btn_primary"
-                       onclick="">确认评价</a>
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">工单状态</label>
+                    <em class="weui-form-preview__value">未处理</em>
                 </div>
             </div>
-            <br>
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">工单编号</label>
+                    <span class="weui-form-preview__value">{{ wo.id }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">手机号码</label>
+                    <span class="weui-form-preview__value">{{ wo.tel_number }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">提交时间</label>
+                    <span class="weui-form-preview__value">{{ wo.regtime }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">电脑品牌</label>
+                    <span class="weui-form-preview__value">{{ wo.brand }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">服务选择</label>
+                    <span class="weui-form-preview__value">{{ wo.problem }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">预约时间</label>
+                    <span class="weui-form-preview__value">{{ wo.scheduled }}</span>
+                </div>
+            </div>
+            <div class="weui-form-preview__ft">
+                <a class="weui-form-preview__btn weui-form-preview__btn_primary"
+                   onclick="canceled({{ wo.id }})">取消预约</a>
+            </div>
+        </div>
+        <br>
         {% elif wo.ishandle == 1 %}
-            <div class="weui-form-preview">
-                <div class="weui-form-preview__hd">
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">工单状态</label>
-                        <em class="weui-form-preview__value">已处理</em>
-                    </div>
-                </div>
-                <div class="weui-form-preview__bd">
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">工单编号</label>
-                        <span class="weui-form-preview__value">{{ wo.id }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">手机号码</label>
-                        <span class="weui-form-preview__value">{{ wo.tel_number }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">提交时间</label>
-                        <span class="weui-form-preview__value">{{ wo.regtime }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">电脑品牌</label>
-                        <span class="weui-form-preview__value">{{ wo.brand }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">服务选择</label>
-                        <span class="weui-form-preview__value">{{ wo.problem }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">预约时间</label>
-                        <span class="weui-form-preview__value">{{ wo.scheduled }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">维修人员编号</label>
-                        <span class="weui-form-preview__value">{{ wo.admin_id }}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">维修评价(0-5分)</label>
-                        <span class="weui-form-preview__value">{{ wo.evaluation }}</span>
-                    </div>
-                </div>
-                <div class="weui-form-preview__ft">
-                    <a class="weui-form-preview__btn weui-form-preview__btn_primary"
-                       onclick="">取消预约</a>
-                    <a class="weui-form-preview__btn weui-form-preview__btn_primary"
-                       onclick="confirmed({{ wo.id }})">确认评价</a>
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">工单状态</label>
+                    <em class="weui-form-preview__value">已处理</em>
                 </div>
             </div>
-            <br>
-        {% endif %}
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">工单编号</label>
+                    <span class="weui-form-preview__value">{{ wo.id }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">手机号码</label>
+                    <span class="weui-form-preview__value">{{ wo.tel_number }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">提交时间</label>
+                    <span class="weui-form-preview__value">{{ wo.regtime }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">电脑品牌</label>
+                    <span class="weui-form-preview__value">{{ wo.brand }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">服务选择</label>
+                    <span class="weui-form-preview__value">{{ wo.problem }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">预约时间</label>
+                    <span class="weui-form-preview__value">{{ wo.scheduled }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">S/N码</label>
+                    <span class="weui-form-preview__value">{{ wo.sn }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">维修人员姓名</label>
+                    <span class="weui-form-preview__value">{{ wo.admin_name }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">维修人员留言</label>
+                    <span class="weui-form-preview__value">{{ wo.admin_remark }}</span>
+                </div>
+            </div>
+            <div class="weui-form-preview__ft">
+                <a class="weui-form-preview__btn weui-form-preview__btn_primary"
+                   onclick="confirmed({{ wo.id }})">确认评价</a>
+            </div>
+        </div>
+        <br>
+        {% elif wo.ishandle == 2 %}
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">工单状态</label>
+                    <em class="weui-form-preview__value">已完成</em>
+                </div>
+            </div>
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">工单编号</label>
+                    <span class="weui-form-preview__value">{{ wo.id }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">手机号码</label>
+                    <span class="weui-form-preview__value">{{ wo.tel_number }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">提交时间</label>
+                    <span class="weui-form-preview__value">{{ wo.regtime }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">电脑品牌</label>
+                    <span class="weui-form-preview__value">{{ wo.brand }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">服务选择</label>
+                    <span class="weui-form-preview__value">{{ wo.problem }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">预约时间</label>
+                    <span class="weui-form-preview__value">{{ wo.scheduled }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">S/N码</label>
+                    <span class="weui-form-preview__value">{{ wo.sn }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">维修人员姓名</label>
+                    <span class="weui-form-preview__value">{{ wo.admin_name }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">维修人员留言</label>
+                    <span class="weui-form-preview__value">{{ wo.admin_remark }}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">维修评价</label>
+                    <span class="weui-form-preview__value">{{ wo.evaluation }}</span>
+                </div>
+            </div>
+        </div>
+        <br>
     {%- endfor %}
 {% else %}
     <div class="weui-msg">
