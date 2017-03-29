@@ -22,12 +22,25 @@ def get_wo_all_by_stuid(stu_id):
     else:
         return wo_info
 
+
 def get_wo_all_by_ishandle(ishandle):
     wo_info = Wo.query.filter_by(ishandle=ishandle).all()
     if not wo_info:
         return None
     else:
         return wo_info
+
+
+def update_wo_by_id(id, sn, admin_remark):
+    wo_info = Wo.query.filter_by(id=id).all()
+    if not wo_info:
+        return False
+    else:
+        wo_info.sn = sn
+        wo_info.admin_remark = admin_remark
+        wo_info.update()
+        return True
+
 
 def update_wo_handle(wo_id, wo_ishandle):
     wo_info = Wo.query.filter_by(id=wo_id).first()

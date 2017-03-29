@@ -27,9 +27,10 @@ class Wo(db.Model):
 	problem: 问题
 	scheduled: 预约时间
 	sn码
-	admin_id: 维修人员编号
+	admin_name: 维修人员
 	evaluation: 维修评价(1-5分)
 	remark: 备注
+	admin_remark
 	regtime: 提交时间
 	'''
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -40,10 +41,11 @@ class Wo(db.Model):
     ishandle = db.Column(db.Integer, default=0, nullable=False)
     problem = db.Column(db.String(20), nullable=False)
     scheduled = db.Column(db.String(20), nullable=False)
-    admin_id = db.Column(db.String(20), nullable=True)
+    admin_name = db.Column(db.String(20), nullable=True)
     sn = db.Column(db.String(20), nullable=True)
     evaluation = db.Column(db.Integer, default=0, nullable=False)
     remark = db.Column(db.String(200), nullable=True)
+    admin_remark = db.Column(db.String(200),nullable=True)
     regtime = db.Column(db.DateTime, default=datetime.now, nullable=False)
 
     def __init__(

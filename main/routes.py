@@ -6,11 +6,6 @@ from flask import render_template, request, abort, jsonify, session, redirect, u
 from main.models import *
 
 
-@app.route('/admin/test')
-def test():
-    return render_template('admin_index.html')
-
-
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
@@ -35,6 +30,7 @@ def set_admin():
         return 'ok'
 
 
+@app.route('/admin/index', methods=['GET', 'POST'])
 @app.route('/admin/index/<handle>', methods=['GET', 'POST'])
 def admin_index(handle=None):
     admin_name = session.get('admin_name')
@@ -48,11 +44,24 @@ def admin_index(handle=None):
                 content = get_wo_all_by_ishandle(0)
             else:
                 content = get_wo_all()
-            return render_template('admin_index.html',content=content)
+            return render_template('admin_index.html', content=content)
         else:
             session.pop('admin_name', None)
             session.pop('admin_passwd', None)
             return redirect(url_for('admin_login'))
+    else:
+        id = int(request.form.get('id', ''))
+        sn = request.form.get('sn', '')
+        admin_remark = request.form.get('admin_remark', '')
+        if sn and admin_remark and id:
+            if update_wo_by_id(id, sn, admin_remark):
+                errmsg = 'ok'
+            else:
+                errmsg = '存储发送错误'
+        else:
+            errmsg = 'err_login'
+        return jsonify({'errmsg': errmsg})
+
 
 @app.route('/', methods=['GET', 'POST'])
 def log_in():
@@ -143,9 +152,13 @@ def history():
             if wo_ishandle:
                 if update_wo_handle(wo_id, wo_ishandle):
                     errmsg = 'ok'
+                else:
+                    errmsg = '存储发生错误'
             if wo_evaluation:
                 if update_wo_evaluation(wo_id, wo_evaluation):
                     errmsg = 'ok'
+                else:
+                    errmsg = '存储发生错误'
         else:
             errmsg = 'err_login'
         return jsonify({'errmsg': errmsg})

@@ -41,16 +41,18 @@
         <form class="ui form" id="lg_form">
             <div class="field">
                 <label>S/N码</label>
+                <input type="number" id="wo_id" style="display: none">
                 <input type="tel" id="sn" placeholder="请输入S/N码"/>
             </div>
             <div class="field">
-                <label>维修人员姓名</label>
-                <input type="text" id="admin_name" placeholder="请输入维修人员姓名"/>
+                <label>维修项目具体描述</label>
+                <input type="text" id="admin_remark" placeholder="请详细描述维修项目、维修结果等"/>
             </div>
-            <button type="submit" class="fluid ui teal button" id="sign_in">登录</button>
+            <a class="fluid ui teal button" id="do_handle">确定</a>
         </form>
         <br>
-    </div>
+    </
+    >
 </div>
 <div class="ui container" id="container">
     <table class="ui celled tablet stackable table">
@@ -65,6 +67,10 @@
             <th>备注</th>
             <th>提交时间</th>
             <th>预约时间</th>
+            <th>维修人员姓名</th>
+            <th>维修留言</th>
+            <th>S/N码</th>
+            <th>维修评价</th>
             <th>工单状态</th>
         </tr>
         </thead>
@@ -72,7 +78,7 @@
         {% if content != None %}
             {% for wo in content %}
                 <tr>
-                    <td>{{ wo.id }}</td>
+                    <td><a href="javascript:;" onclick="handled({{ wo.id }})">{{ wo.id }}</a></td>
                     <td>{{ wo.stu_id }}</td>
                     <td>{{ wo.stu_name }}</td>
                     <td>{{ wo.tel_number }}</td>
@@ -81,6 +87,10 @@
                     <td>{{ wo.remark }}</td>
                     <td>{{ wo.regtime }}</td>
                     <td>{{ wo.scheduled }}</td>
+                    <td>{{ wo.admin_name }}</td>
+                    <td>{{ wo.admin_remark }}</td>
+                    <td>{{ wo.sn }}</td>
+                    <td>{{ wo.evaluation }}</td>
                     <td>
                         {% if wo.ishandle ==0 %}
                             未处理
@@ -98,5 +108,33 @@
 </div>
 <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/semantic-ui/2.2.9/semantic.min.js"></script>
+<script>
+    function handled(wo_id) {
+        $('.ui.modal').modal('show');
+        $('#wo_id').value = wo_id;
+    }
+
+    $('#do_handle').click(function () {
+        var wo_id = $('#wo_id').val().trim();
+        var sn = $('#sn').val().trim();
+        var admin_remark = $('#admin_remark').val().trim();
+
+        if (wo_id && sn && admin_remark) {
+            $.post(window.location.href, {id: wo_id, sn: sn, admin_remark: admin_remark}, function (res) {
+                if (res.errmsg == 'ok') {
+                    setTimeout(function () {
+                        window.location.href = window.location.href;
+                    }, 500)
+                }else {
+                    $("#error").html("<p>res.errmsg</p>").show();
+                }
+            });
+        } else {
+            $("#error").html("<p>信息错误</p>").show();
+        }
+    });
+
+
+</script>
 </body>
 </html>
