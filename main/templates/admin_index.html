@@ -87,10 +87,34 @@
                     <td>{{ wo.remark }}</td>
                     <td>{{ wo.regtime }}</td>
                     <td>{{ wo.scheduled }}</td>
-                    <td>{{ wo.admin_name }}</td>
-                    <td>{{ wo.admin_remark }}</td>
-                    <td>{{ wo.sn }}</td>
-                    <td>{{ wo.evaluation }}</td>
+                    <td>
+                        {% if wo.admin_name != None %}
+                            {{ wo.admin_name }}
+                        {% else %}
+                            空
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if wo.admin_remark != None %}
+                            {{ wo.admin_remark }}
+                        {% else %}
+                            空
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if wo.sn != None %}
+                            {{ wo.sn }}
+                        {% else %}
+                            空
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if wo.evaluation != None %}
+                            {{ wo.evaluation }}
+                        {% else %}
+                            空
+                        {% endif %}
+                    </td>
                     <td>
                         {% if wo.ishandle ==0 %}
                             未处理
@@ -125,7 +149,7 @@
                     setTimeout(function () {
                         window.location.href = window.location.href;
                     }, 500)
-                }else {
+                } else {
                     $("#error").html("<p>res.errmsg</p>").show();
                 }
             });
@@ -133,8 +157,6 @@
             $("#error").html("<p>信息错误</p>").show();
         }
     });
-
-
 </script>
 </body>
 </html>

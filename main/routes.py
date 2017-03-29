@@ -50,7 +50,7 @@ def admin_index(handle=None):
             session.pop('admin_passwd', None)
             return redirect(url_for('admin_login'))
     else:
-        id = int(request.form.get('id', ''))
+        id = request.form.get('id', '')
         sn = request.form.get('sn', '')
         admin_remark = request.form.get('admin_remark', '')
         if sn and admin_remark and id:
@@ -145,8 +145,8 @@ def history():
             return redirect(url_for('log_out'))
     else:
         wo_id = request.form.get('wo_id', '')
-        wo_ishandle = int(request.form.get('wo_ishandle', ''))
-        wo_evaluation = int(request.form.get('wo_evaluation', ''))
+        wo_ishandle = request.form.get('wo_ishandle', '')
+        wo_evaluation = request.form.get('wo_evaluation', '')
         print(wo_id, wo_ishandle, wo_evaluation)
         if stu_name and stu_id:
             if wo_ishandle:
