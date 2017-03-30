@@ -35,12 +35,15 @@ def set_admin():
 def admin_index(handle=None):
     admin_name = session.get('admin_name')
     admin_passwd = session.get('admin_passwd')
+    stu_id = request.args.get('stu_id', None)
     if request.method == 'GET':
         if admin_name and admin_passwd:
             if handle == 'ishandle':
                 content = get_wo_all_by_ishandle(1)
             elif handle == 'nothandle':
                 content = get_wo_all_by_ishandle(0)
+            elif stu_id:
+                content = get_wo_all_by_stuid(stu_id)
             else:
                 content = get_wo_all()
             return render_template('admin_index.html', content=content)
