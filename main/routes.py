@@ -164,7 +164,7 @@ def history():
                     errmsg = '存储发生错误'
         else:
             errmsg = 'err_login'
-        return jsonify({'errmsg':errmsg})
+        return jsonify({'errmsg': errmsg})
 
 
 @app.route('/logout', methods=['GET'])
@@ -182,5 +182,5 @@ def page_not_found(error):
 
 @app.errorhandler(Exception)
 def unhandled_exception(error):
-    app.logger.error('Unhandled Exception:', (error))
-    return "Error",500
+    app.logger.error('Unhandled Exception:%s', (error))
+    return "Error", 500
