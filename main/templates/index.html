@@ -85,6 +85,15 @@
     $(function () {
         FastClick.attach(document.body)
     });
+
+    $('#warnning').click(function () {
+        $.alert("1.请确保你的学号和姓名正确,个人信息会加密存储\n" +
+                "2.请在前来维修前备份你的重要数据,如在维修过程中发生数据丢失,我们概不负责\n" +
+                "3.如要硬件更换，需要你自己购买\n" +
+                "4.本条款最终解释权归E修哥志愿服务队所有\n", "条款", function () {
+            $('#submit').removeClass('weui-btn_disabled');
+        });
+    });
 </script>
 </body>
 </html>

@@ -7,6 +7,7 @@ from flask import render_template, request, abort, jsonify, session, redirect, u
 from main.models import *
 
 
+
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
