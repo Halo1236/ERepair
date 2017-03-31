@@ -10,8 +10,8 @@ from main.models import *
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
-        admin_name = request.form.get('admin_name', '')
-        admin_passwd = request.form.get('admin_passwd', '')
+        admin_name = request.form.get('admin_name', None)
+        admin_passwd = request.form.get('admin_passwd', None)
         session['admin_name'] = admin_name
         session['admin_passwd'] = admin_passwd
         if is_admin_exists(admin_name, admin_passwd):
@@ -34,8 +34,8 @@ def set_admin():
 @app.route('/admin/index', methods=['GET', 'POST'])
 @app.route('/admin/index/<handle>', methods=['GET', 'POST'])
 def admin_index(handle=None):
-    admin_name = session.get('admin_name')
-    admin_passwd = session.get('admin_passwd')
+    admin_name = session.get('admin_name', None)
+    admin_passwd = session.get('admin_passwd', None)
     stu_id = request.args.get('stu_id', None)
     if request.method == 'GET':
         if admin_name and admin_passwd:
@@ -70,8 +70,8 @@ def admin_index(handle=None):
 @app.route('/', methods=['GET', 'POST'])
 def log_in():
     if request.method == 'POST':
-        stu_id = request.form.get('userid', '')
-        stu_name = request.form.get('username', '')
+        stu_id = request.form.get('userid', None)
+        stu_name = request.form.get('username', None)
         session['userid'] = stu_id
         session['username'] = stu_name
         if set_user_info(stu_id, stu_name):
@@ -105,11 +105,11 @@ def index():
     if request.method == 'POST':
         stu_id = session.get('userid')
         stu_name = session.get('username')
-        tel_number = request.form.get('tel_number', '')
-        brand = request.form.get('brand', '')
-        problem = request.form.get('problem', '')
-        scheduled = request.form.get('scheduled', '')
-        remark = request.form.get('remark', '')
+        tel_number = request.form.get('tel_number', None)
+        brand = request.form.get('brand', None)
+        problem = request.form.get('problem', None)
+        scheduled = request.form.get('scheduled', None)
+        remark = request.form.get('remark', None)
         print(tel_number, brand, problem, scheduled, remark)
         if stu_id and stu_name and tel_number and brand and problem and scheduled and remark:
             set_wo_info(
@@ -148,9 +148,9 @@ def history():
         else:
             return redirect(url_for('log_out'))
     else:
-        wo_id = request.form.get('wo_id', '')
-        wo_ishandle = request.form.get('wo_ishandle', '')
-        wo_evaluation = request.form.get('wo_evaluation', '')
+        wo_id = request.form.get('wo_id', None)
+        wo_ishandle = request.form.get('wo_ishandle', None)
+        wo_evaluation = request.form.get('wo_evaluation', None)
         print(wo_id, wo_ishandle, wo_evaluation)
         if stu_name and stu_id:
             if wo_ishandle:
