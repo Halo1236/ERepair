@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from flask import render_template, request, abort, jsonify, session, redirect, url_for
+from flask import render_template, request, abort, jsonify, session, redirect, url_for, send_from_directory
 
 from main.models import *
-
 
 
 @app.route('/admin', methods=['GET', 'POST'])
@@ -174,6 +173,11 @@ def log_out():
     session.pop('userid', None)
     session.pop('username', None)
     return redirect(url_for('log_in'))
+
+
+@app.route('/root.txt')
+def robotstxt():
+    return send_from_directory(app.static_folder, 'root.txt')
 
 
 @app.errorhandler(404)
