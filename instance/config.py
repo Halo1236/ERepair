@@ -3,10 +3,8 @@
 
 DEBUG = False
 
-MAIN_URL = u'http://m.ayhalo.com'
-
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-SQLALCHEMY_DATABASE_URI = u'mysql://root:diaosi@localhost/eRepairWo?charset=utf8mb4'
+SQLALCHEMY_DATABASE_URI = u''
 
-SECRET_KEY = u'dasfdasfaddqweqw!@#'
+SECRET_KEY = u''
