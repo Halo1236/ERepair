@@ -7,21 +7,6 @@ from flask import render_template, request, abort, jsonify, session, redirect, u
 from main.models import *
 
 
-@app.route('/admin', methods=['GET', 'POST'])
-def admin_login():
-    if request.method == 'POST':
-        admin_name = request.form.get('admin_name', None)
-        admin_passwd = request.form.get('admin_passwd', None)
-        session['admin_name'] = admin_name
-        session['admin_passwd'] = admin_passwd
-        if is_admin_exists(admin_name, admin_passwd):
-            return jsonify({'errmsg': 'ok'})
-        else:
-            return jsonify({'errmsg': 'error'})
-    else:
-        return render_template('admin.html')
-
-
 @app.route('/admin/set_admin/abc', methods=['POST'])
 def set_admin():
     if request.method == 'POST':
