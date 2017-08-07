@@ -7,14 +7,6 @@ from flask import render_template, request, abort, jsonify, session, redirect, u
 from main.models import *
 
 
-@app.route('/admin/set_admin/abc', methods=['POST'])
-def set_admin():
-    if request.method == 'POST':
-        admin_name = request.form.get('admin_name', '')
-        admin_passwd = request.form.get('admin_passwd', '')
-        set_admin_info(admin_name, admin_passwd)
-        return 'ok'
-
 
 @app.route('/admin/index', methods=['GET', 'POST'])
 @app.route('/admin/index/<handle>', methods=['GET', 'POST'])
